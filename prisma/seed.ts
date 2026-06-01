@@ -1,5 +1,5 @@
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../src/generated/prisma/client.js";
+import { PrismaClient, $Enums } from "../src/generated/prisma/client.js";
 import bcrypt from "bcryptjs";
 
 if (!process.env["DATABASE_URL"]) {
@@ -361,7 +361,7 @@ async function main() {
         classId: string;
         subjectId: string;
         date: Date;
-        status: string;
+        status: $Enums.AttendanceStatus;
         recordedById: string;
         institutionId: string;
       }[] = [];
@@ -371,14 +371,14 @@ async function main() {
           const seed = studentSeedData[students.indexOf(student)]!;
           const roll = Math.random();
           const threshold = seed.punctuality * 0.85;
-          const status = roll < threshold ? "PRESENT" : roll < threshold + 0.08 ? "ABSENT" : roll < threshold + 0.14 ? "LATE" : "LEAVE";
+          const status: $Enums.AttendanceStatus = roll < threshold ? "PRESENT" : roll < threshold + 0.08 ? "ABSENT" : roll < threshold + 0.14 ? "LATE" : "LEAVE";
           batch.push({
             studentId: student.id,
             classId: classes[ci]!.id,
             subjectId: subjMap[subjectName]!.id,
             date,
-              status: status as any,
-              recordedById: adminUser.id,
+            status,
+            recordedById: adminUser.id,
             institutionId: INSTITUTION_ID,
           });
         }
