@@ -234,7 +234,7 @@ async function main() {
   const perClass: Record<number, typeof tscAssignments> = {};
   for (const a of tscAssignments) {
     if (!perClass[a.classIdx]) perClass[a.classIdx] = [];
-    perClass[a.classIdx].push(a);
+    perClass[a.classIdx]!.push(a);
   }
 
   let tscCount = 0;
