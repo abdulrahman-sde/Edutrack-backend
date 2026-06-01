@@ -9,6 +9,7 @@ import subjectsRoutes from "./modules/subjects/subjects.routes.js";
 import studentsRoutes from "./modules/students/students.routes.js";
 import examsRoutes from "./modules/exams/exams.routes.js";
 import resourcesRoutes from "./modules/resources/resources.routes.js";
+import reportsRoutes from "./modules/reports/reports.routes.js";
 import { errorHandler } from "./middleware/error-handler.js";
 
 if (!process.env["DATABASE_URL"]) {
@@ -34,6 +35,7 @@ app.use("/api/subjects", subjectsRoutes);
 app.use("/api/students", studentsRoutes);
 app.use("/api/exams", examsRoutes);
 app.use("/api", resourcesRoutes);
+app.use("/api/reports", reportsRoutes);
 
 app.use(errorHandler);
 
