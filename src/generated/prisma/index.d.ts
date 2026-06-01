@@ -74,16 +74,6 @@ export type Exam = $Result.DefaultSelection<Prisma.$ExamPayload>
  */
 export type ExamClass = $Result.DefaultSelection<Prisma.$ExamClassPayload>
 /**
- * Model Assessment
- * 
- */
-export type Assessment = $Result.DefaultSelection<Prisma.$AssessmentPayload>
-/**
- * Model AssessmentEntry
- * 
- */
-export type AssessmentEntry = $Result.DefaultSelection<Prisma.$AssessmentEntryPayload>
-/**
  * Model ExamMark
  * 
  */
@@ -135,16 +125,6 @@ export const ExamTerm: {
 export type ExamTerm = (typeof ExamTerm)[keyof typeof ExamTerm]
 
 
-export const AssessmentType: {
-  QUIZ: 'QUIZ',
-  ASSIGNMENT: 'ASSIGNMENT',
-  MIDTERM: 'MIDTERM',
-  FINAL: 'FINAL'
-};
-
-export type AssessmentType = (typeof AssessmentType)[keyof typeof AssessmentType]
-
-
 export const ResourceType: {
   ASSIGNMENT: 'ASSIGNMENT',
   STUDY_MATERIAL: 'STUDY_MATERIAL',
@@ -170,10 +150,6 @@ export const AttendanceStatus: typeof $Enums.AttendanceStatus
 export type ExamTerm = $Enums.ExamTerm
 
 export const ExamTerm: typeof $Enums.ExamTerm
-
-export type AssessmentType = $Enums.AssessmentType
-
-export const AssessmentType: typeof $Enums.AssessmentType
 
 export type ResourceType = $Enums.ResourceType
 
@@ -419,26 +395,6 @@ export class PrismaClient<
     * ```
     */
   get examClass(): Prisma.ExamClassDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.assessment`: Exposes CRUD operations for the **Assessment** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Assessments
-    * const assessments = await prisma.assessment.findMany()
-    * ```
-    */
-  get assessment(): Prisma.AssessmentDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.assessmentEntry`: Exposes CRUD operations for the **AssessmentEntry** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more AssessmentEntries
-    * const assessmentEntries = await prisma.assessmentEntry.findMany()
-    * ```
-    */
-  get assessmentEntry(): Prisma.AssessmentEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.examMark`: Exposes CRUD operations for the **ExamMark** model.
@@ -905,8 +861,6 @@ export namespace Prisma {
     Attendance: 'Attendance',
     Exam: 'Exam',
     ExamClass: 'ExamClass',
-    Assessment: 'Assessment',
-    AssessmentEntry: 'AssessmentEntry',
     ExamMark: 'ExamMark',
     Resource: 'Resource'
   };
@@ -924,7 +878,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "adminProfile" | "institution" | "teacherProfile" | "class" | "subject" | "teacherSubjectClass" | "student" | "enrollment" | "attendance" | "exam" | "examClass" | "assessment" | "assessmentEntry" | "examMark" | "resource"
+      modelProps: "user" | "adminProfile" | "institution" | "teacherProfile" | "class" | "subject" | "teacherSubjectClass" | "student" | "enrollment" | "attendance" | "exam" | "examClass" | "examMark" | "resource"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1816,154 +1770,6 @@ export namespace Prisma {
           }
         }
       }
-      Assessment: {
-        payload: Prisma.$AssessmentPayload<ExtArgs>
-        fields: Prisma.AssessmentFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AssessmentFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AssessmentFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          findFirst: {
-            args: Prisma.AssessmentFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AssessmentFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          findMany: {
-            args: Prisma.AssessmentFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>[]
-          }
-          create: {
-            args: Prisma.AssessmentCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          createMany: {
-            args: Prisma.AssessmentCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AssessmentCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>[]
-          }
-          delete: {
-            args: Prisma.AssessmentDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          update: {
-            args: Prisma.AssessmentUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          deleteMany: {
-            args: Prisma.AssessmentDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AssessmentUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AssessmentUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>[]
-          }
-          upsert: {
-            args: Prisma.AssessmentUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentPayload>
-          }
-          aggregate: {
-            args: Prisma.AssessmentAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAssessment>
-          }
-          groupBy: {
-            args: Prisma.AssessmentGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AssessmentCountArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentCountAggregateOutputType> | number
-          }
-        }
-      }
-      AssessmentEntry: {
-        payload: Prisma.$AssessmentEntryPayload<ExtArgs>
-        fields: Prisma.AssessmentEntryFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AssessmentEntryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AssessmentEntryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          findFirst: {
-            args: Prisma.AssessmentEntryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AssessmentEntryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          findMany: {
-            args: Prisma.AssessmentEntryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>[]
-          }
-          create: {
-            args: Prisma.AssessmentEntryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          createMany: {
-            args: Prisma.AssessmentEntryCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AssessmentEntryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>[]
-          }
-          delete: {
-            args: Prisma.AssessmentEntryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          update: {
-            args: Prisma.AssessmentEntryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          deleteMany: {
-            args: Prisma.AssessmentEntryDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AssessmentEntryUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AssessmentEntryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>[]
-          }
-          upsert: {
-            args: Prisma.AssessmentEntryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentEntryPayload>
-          }
-          aggregate: {
-            args: Prisma.AssessmentEntryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAssessmentEntry>
-          }
-          groupBy: {
-            args: Prisma.AssessmentEntryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentEntryGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AssessmentEntryCountArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentEntryCountAggregateOutputType> | number
-          }
-        }
-      }
       ExamMark: {
         payload: Prisma.$ExamMarkPayload<ExtArgs>
         fields: Prisma.ExamMarkFieldRefs
@@ -2232,8 +2038,6 @@ export namespace Prisma {
     attendance?: AttendanceOmit
     exam?: ExamOmit
     examClass?: ExamClassOmit
-    assessment?: AssessmentOmit
-    assessmentEntry?: AssessmentEntryOmit
     examMark?: ExamMarkOmit
     resource?: ResourceOmit
   }
@@ -2383,7 +2187,6 @@ export namespace Prisma {
     exams: number
     examClasses: number
     examMarks: number
-    assessments: number
     resources: number
     enrollments: number
     teacherSubjectClasses: number
@@ -2399,7 +2202,6 @@ export namespace Prisma {
     exams?: boolean | InstitutionCountOutputTypeCountExamsArgs
     examClasses?: boolean | InstitutionCountOutputTypeCountExamClassesArgs
     examMarks?: boolean | InstitutionCountOutputTypeCountExamMarksArgs
-    assessments?: boolean | InstitutionCountOutputTypeCountAssessmentsArgs
     resources?: boolean | InstitutionCountOutputTypeCountResourcesArgs
     enrollments?: boolean | InstitutionCountOutputTypeCountEnrollmentsArgs
     teacherSubjectClasses?: boolean | InstitutionCountOutputTypeCountTeacherSubjectClassesArgs
@@ -2482,13 +2284,6 @@ export namespace Prisma {
   /**
    * InstitutionCountOutputType without action
    */
-  export type InstitutionCountOutputTypeCountAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentWhereInput
-  }
-
-  /**
-   * InstitutionCountOutputType without action
-   */
   export type InstitutionCountOutputTypeCountResourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResourceWhereInput
   }
@@ -2548,7 +2343,6 @@ export namespace Prisma {
     teacherSubjectClasses: number
     attendances: number
     resources: number
-    assessments: number
     examClasses: number
   }
 
@@ -2557,7 +2351,6 @@ export namespace Prisma {
     teacherSubjectClasses?: boolean | ClassCountOutputTypeCountTeacherSubjectClassesArgs
     attendances?: boolean | ClassCountOutputTypeCountAttendancesArgs
     resources?: boolean | ClassCountOutputTypeCountResourcesArgs
-    assessments?: boolean | ClassCountOutputTypeCountAssessmentsArgs
     examClasses?: boolean | ClassCountOutputTypeCountExamClassesArgs
   }
 
@@ -2603,13 +2396,6 @@ export namespace Prisma {
   /**
    * ClassCountOutputType without action
    */
-  export type ClassCountOutputTypeCountAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentWhereInput
-  }
-
-  /**
-   * ClassCountOutputType without action
-   */
   export type ClassCountOutputTypeCountExamClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExamClassWhereInput
   }
@@ -2622,7 +2408,6 @@ export namespace Prisma {
   export type SubjectCountOutputType = {
     teacherSubjectClasses: number
     examMarks: number
-    assessments: number
     attendances: number
     resources: number
   }
@@ -2630,7 +2415,6 @@ export namespace Prisma {
   export type SubjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacherSubjectClasses?: boolean | SubjectCountOutputTypeCountTeacherSubjectClassesArgs
     examMarks?: boolean | SubjectCountOutputTypeCountExamMarksArgs
-    assessments?: boolean | SubjectCountOutputTypeCountAssessmentsArgs
     attendances?: boolean | SubjectCountOutputTypeCountAttendancesArgs
     resources?: boolean | SubjectCountOutputTypeCountResourcesArgs
   }
@@ -2663,13 +2447,6 @@ export namespace Prisma {
   /**
    * SubjectCountOutputType without action
    */
-  export type SubjectCountOutputTypeCountAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentWhereInput
-  }
-
-  /**
-   * SubjectCountOutputType without action
-   */
   export type SubjectCountOutputTypeCountAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
   }
@@ -2690,14 +2467,12 @@ export namespace Prisma {
     enrollments: number
     attendances: number
     examMarks: number
-    assessmentEntries: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     attendances?: boolean | StudentCountOutputTypeCountAttendancesArgs
     examMarks?: boolean | StudentCountOutputTypeCountExamMarksArgs
-    assessmentEntries?: boolean | StudentCountOutputTypeCountAssessmentEntriesArgs
   }
 
   // Custom InputTypes
@@ -2730,13 +2505,6 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountExamMarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExamMarkWhereInput
-  }
-
-  /**
-   * StudentCountOutputType without action
-   */
-  export type StudentCountOutputTypeCountAssessmentEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentEntryWhereInput
   }
 
 
@@ -2777,37 +2545,6 @@ export namespace Prisma {
    */
   export type ExamCountOutputTypeCountExamClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExamClassWhereInput
-  }
-
-
-  /**
-   * Count Type AssessmentCountOutputType
-   */
-
-  export type AssessmentCountOutputType = {
-    entries: number
-  }
-
-  export type AssessmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    entries?: boolean | AssessmentCountOutputTypeCountEntriesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * AssessmentCountOutputType without action
-   */
-  export type AssessmentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentCountOutputType
-     */
-    select?: AssessmentCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * AssessmentCountOutputType without action
-   */
-  export type AssessmentCountOutputTypeCountEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentEntryWhereInput
   }
 
 
@@ -5372,7 +5109,6 @@ export namespace Prisma {
     exams?: boolean | Institution$examsArgs<ExtArgs>
     examClasses?: boolean | Institution$examClassesArgs<ExtArgs>
     examMarks?: boolean | Institution$examMarksArgs<ExtArgs>
-    assessments?: boolean | Institution$assessmentsArgs<ExtArgs>
     resources?: boolean | Institution$resourcesArgs<ExtArgs>
     enrollments?: boolean | Institution$enrollmentsArgs<ExtArgs>
     teacherSubjectClasses?: boolean | Institution$teacherSubjectClassesArgs<ExtArgs>
@@ -5417,7 +5153,6 @@ export namespace Prisma {
     exams?: boolean | Institution$examsArgs<ExtArgs>
     examClasses?: boolean | Institution$examClassesArgs<ExtArgs>
     examMarks?: boolean | Institution$examMarksArgs<ExtArgs>
-    assessments?: boolean | Institution$assessmentsArgs<ExtArgs>
     resources?: boolean | Institution$resourcesArgs<ExtArgs>
     enrollments?: boolean | Institution$enrollmentsArgs<ExtArgs>
     teacherSubjectClasses?: boolean | Institution$teacherSubjectClassesArgs<ExtArgs>
@@ -5443,7 +5178,6 @@ export namespace Prisma {
       exams: Prisma.$ExamPayload<ExtArgs>[]
       examClasses: Prisma.$ExamClassPayload<ExtArgs>[]
       examMarks: Prisma.$ExamMarkPayload<ExtArgs>[]
-      assessments: Prisma.$AssessmentPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       teacherSubjectClasses: Prisma.$TeacherSubjectClassPayload<ExtArgs>[]
@@ -5858,7 +5592,6 @@ export namespace Prisma {
     exams<T extends Institution$examsArgs<ExtArgs> = {}>(args?: Subset<T, Institution$examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     examClasses<T extends Institution$examClassesArgs<ExtArgs> = {}>(args?: Subset<T, Institution$examClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     examMarks<T extends Institution$examMarksArgs<ExtArgs> = {}>(args?: Subset<T, Institution$examMarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    assessments<T extends Institution$assessmentsArgs<ExtArgs> = {}>(args?: Subset<T, Institution$assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Institution$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Institution$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Institution$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Institution$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacherSubjectClasses<T extends Institution$teacherSubjectClassesArgs<ExtArgs> = {}>(args?: Subset<T, Institution$teacherSubjectClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherSubjectClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6529,30 +6262,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ExamMarkScalarFieldEnum | ExamMarkScalarFieldEnum[]
-  }
-
-  /**
-   * Institution.assessments
-   */
-  export type Institution$assessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    where?: AssessmentWhereInput
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    cursor?: AssessmentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
   }
 
   /**
@@ -8044,7 +7753,6 @@ export namespace Prisma {
     teacherSubjectClasses?: boolean | Class$teacherSubjectClassesArgs<ExtArgs>
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     resources?: boolean | Class$resourcesArgs<ExtArgs>
-    assessments?: boolean | Class$assessmentsArgs<ExtArgs>
     examClasses?: boolean | Class$examClassesArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
@@ -8088,7 +7796,6 @@ export namespace Prisma {
     teacherSubjectClasses?: boolean | Class$teacherSubjectClassesArgs<ExtArgs>
     attendances?: boolean | Class$attendancesArgs<ExtArgs>
     resources?: boolean | Class$resourcesArgs<ExtArgs>
-    assessments?: boolean | Class$assessmentsArgs<ExtArgs>
     examClasses?: boolean | Class$examClassesArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -8107,7 +7814,6 @@ export namespace Prisma {
       teacherSubjectClasses: Prisma.$TeacherSubjectClassPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
-      assessments: Prisma.$AssessmentPayload<ExtArgs>[]
       examClasses: Prisma.$ExamClassPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -8517,7 +8223,6 @@ export namespace Prisma {
     teacherSubjectClasses<T extends Class$teacherSubjectClassesArgs<ExtArgs> = {}>(args?: Subset<T, Class$teacherSubjectClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherSubjectClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     attendances<T extends Class$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Class$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Class$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Class$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    assessments<T extends Class$assessmentsArgs<ExtArgs> = {}>(args?: Subset<T, Class$assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     examClasses<T extends Class$examClassesArgs<ExtArgs> = {}>(args?: Subset<T, Class$examClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9052,30 +8757,6 @@ export namespace Prisma {
   }
 
   /**
-   * Class.assessments
-   */
-  export type Class$assessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    where?: AssessmentWhereInput
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    cursor?: AssessmentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
-  }
-
-  /**
    * Class.examClasses
    */
   export type Class$examClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9301,7 +8982,6 @@ export namespace Prisma {
     institution?: boolean | InstitutionDefaultArgs<ExtArgs>
     teacherSubjectClasses?: boolean | Subject$teacherSubjectClassesArgs<ExtArgs>
     examMarks?: boolean | Subject$examMarksArgs<ExtArgs>
-    assessments?: boolean | Subject$assessmentsArgs<ExtArgs>
     attendances?: boolean | Subject$attendancesArgs<ExtArgs>
     resources?: boolean | Subject$resourcesArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -9344,7 +9024,6 @@ export namespace Prisma {
     institution?: boolean | InstitutionDefaultArgs<ExtArgs>
     teacherSubjectClasses?: boolean | Subject$teacherSubjectClassesArgs<ExtArgs>
     examMarks?: boolean | Subject$examMarksArgs<ExtArgs>
-    assessments?: boolean | Subject$assessmentsArgs<ExtArgs>
     attendances?: boolean | Subject$attendancesArgs<ExtArgs>
     resources?: boolean | Subject$resourcesArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -9362,7 +9041,6 @@ export namespace Prisma {
       institution: Prisma.$InstitutionPayload<ExtArgs>
       teacherSubjectClasses: Prisma.$TeacherSubjectClassPayload<ExtArgs>[]
       examMarks: Prisma.$ExamMarkPayload<ExtArgs>[]
-      assessments: Prisma.$AssessmentPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
     }
@@ -9771,7 +9449,6 @@ export namespace Prisma {
     institution<T extends InstitutionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstitutionDefaultArgs<ExtArgs>>): Prisma__InstitutionClient<$Result.GetResult<Prisma.$InstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     teacherSubjectClasses<T extends Subject$teacherSubjectClassesArgs<ExtArgs> = {}>(args?: Subset<T, Subject$teacherSubjectClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherSubjectClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     examMarks<T extends Subject$examMarksArgs<ExtArgs> = {}>(args?: Subset<T, Subject$examMarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    assessments<T extends Subject$assessmentsArgs<ExtArgs> = {}>(args?: Subset<T, Subject$assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     attendances<T extends Subject$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Subject$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Subject$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Subject$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -10256,30 +9933,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ExamMarkScalarFieldEnum | ExamMarkScalarFieldEnum[]
-  }
-
-  /**
-   * Subject.assessments
-   */
-  export type Subject$assessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    where?: AssessmentWhereInput
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    cursor?: AssessmentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
   }
 
   /**
@@ -11767,7 +11420,6 @@ export namespace Prisma {
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
     examMarks?: boolean | Student$examMarksArgs<ExtArgs>
-    assessmentEntries?: boolean | Student$assessmentEntriesArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -11827,7 +11479,6 @@ export namespace Prisma {
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
     examMarks?: boolean | Student$examMarksArgs<ExtArgs>
-    assessmentEntries?: boolean | Student$assessmentEntriesArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11844,7 +11495,6 @@ export namespace Prisma {
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       examMarks: Prisma.$ExamMarkPayload<ExtArgs>[]
-      assessmentEntries: Prisma.$AssessmentEntryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12258,7 +11908,6 @@ export namespace Prisma {
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     attendances<T extends Student$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Student$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     examMarks<T extends Student$examMarksArgs<ExtArgs> = {}>(args?: Subset<T, Student$examMarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    assessmentEntries<T extends Student$assessmentEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assessmentEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12771,30 +12420,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ExamMarkScalarFieldEnum | ExamMarkScalarFieldEnum[]
-  }
-
-  /**
-   * Student.assessmentEntries
-   */
-  export type Student$assessmentEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    where?: AssessmentEntryWhereInput
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    cursor?: AssessmentEntryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AssessmentEntryScalarFieldEnum | AssessmentEntryScalarFieldEnum[]
   }
 
   /**
@@ -17355,2306 +16980,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Assessment
-   */
-
-  export type AggregateAssessment = {
-    _count: AssessmentCountAggregateOutputType | null
-    _avg: AssessmentAvgAggregateOutputType | null
-    _sum: AssessmentSumAggregateOutputType | null
-    _min: AssessmentMinAggregateOutputType | null
-    _max: AssessmentMaxAggregateOutputType | null
-  }
-
-  export type AssessmentAvgAggregateOutputType = {
-    totalMarks: number | null
-  }
-
-  export type AssessmentSumAggregateOutputType = {
-    totalMarks: number | null
-  }
-
-  export type AssessmentMinAggregateOutputType = {
-    id: string | null
-    classId: string | null
-    subjectId: string | null
-    type: $Enums.AssessmentType | null
-    title: string | null
-    date: Date | null
-    totalMarks: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    institutionId: string | null
-  }
-
-  export type AssessmentMaxAggregateOutputType = {
-    id: string | null
-    classId: string | null
-    subjectId: string | null
-    type: $Enums.AssessmentType | null
-    title: string | null
-    date: Date | null
-    totalMarks: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    institutionId: string | null
-  }
-
-  export type AssessmentCountAggregateOutputType = {
-    id: number
-    classId: number
-    subjectId: number
-    type: number
-    title: number
-    date: number
-    totalMarks: number
-    createdAt: number
-    updatedAt: number
-    institutionId: number
-    _all: number
-  }
-
-
-  export type AssessmentAvgAggregateInputType = {
-    totalMarks?: true
-  }
-
-  export type AssessmentSumAggregateInputType = {
-    totalMarks?: true
-  }
-
-  export type AssessmentMinAggregateInputType = {
-    id?: true
-    classId?: true
-    subjectId?: true
-    type?: true
-    title?: true
-    date?: true
-    totalMarks?: true
-    createdAt?: true
-    updatedAt?: true
-    institutionId?: true
-  }
-
-  export type AssessmentMaxAggregateInputType = {
-    id?: true
-    classId?: true
-    subjectId?: true
-    type?: true
-    title?: true
-    date?: true
-    totalMarks?: true
-    createdAt?: true
-    updatedAt?: true
-    institutionId?: true
-  }
-
-  export type AssessmentCountAggregateInputType = {
-    id?: true
-    classId?: true
-    subjectId?: true
-    type?: true
-    title?: true
-    date?: true
-    totalMarks?: true
-    createdAt?: true
-    updatedAt?: true
-    institutionId?: true
-    _all?: true
-  }
-
-  export type AssessmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Assessment to aggregate.
-     */
-    where?: AssessmentWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Assessments to fetch.
-     */
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AssessmentWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Assessments from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Assessments.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Assessments
-    **/
-    _count?: true | AssessmentCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: AssessmentAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AssessmentSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AssessmentMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AssessmentMaxAggregateInputType
-  }
-
-  export type GetAssessmentAggregateType<T extends AssessmentAggregateArgs> = {
-        [P in keyof T & keyof AggregateAssessment]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAssessment[P]>
-      : GetScalarType<T[P], AggregateAssessment[P]>
-  }
-
-
-
-
-  export type AssessmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentWhereInput
-    orderBy?: AssessmentOrderByWithAggregationInput | AssessmentOrderByWithAggregationInput[]
-    by: AssessmentScalarFieldEnum[] | AssessmentScalarFieldEnum
-    having?: AssessmentScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AssessmentCountAggregateInputType | true
-    _avg?: AssessmentAvgAggregateInputType
-    _sum?: AssessmentSumAggregateInputType
-    _min?: AssessmentMinAggregateInputType
-    _max?: AssessmentMaxAggregateInputType
-  }
-
-  export type AssessmentGroupByOutputType = {
-    id: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date
-    totalMarks: number
-    createdAt: Date
-    updatedAt: Date
-    institutionId: string
-    _count: AssessmentCountAggregateOutputType | null
-    _avg: AssessmentAvgAggregateOutputType | null
-    _sum: AssessmentSumAggregateOutputType | null
-    _min: AssessmentMinAggregateOutputType | null
-    _max: AssessmentMaxAggregateOutputType | null
-  }
-
-  type GetAssessmentGroupByPayload<T extends AssessmentGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AssessmentGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AssessmentGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AssessmentGroupByOutputType[P]>
-            : GetScalarType<T[P], AssessmentGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AssessmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    classId?: boolean
-    subjectId?: boolean
-    type?: boolean
-    title?: boolean
-    date?: boolean
-    totalMarks?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    institutionId?: boolean
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-    entries?: boolean | Assessment$entriesArgs<ExtArgs>
-    _count?: boolean | AssessmentCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessment"]>
-
-  export type AssessmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    classId?: boolean
-    subjectId?: boolean
-    type?: boolean
-    title?: boolean
-    date?: boolean
-    totalMarks?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    institutionId?: boolean
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessment"]>
-
-  export type AssessmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    classId?: boolean
-    subjectId?: boolean
-    type?: boolean
-    title?: boolean
-    date?: boolean
-    totalMarks?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    institutionId?: boolean
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessment"]>
-
-  export type AssessmentSelectScalar = {
-    id?: boolean
-    classId?: boolean
-    subjectId?: boolean
-    type?: boolean
-    title?: boolean
-    date?: boolean
-    totalMarks?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    institutionId?: boolean
-  }
-
-  export type AssessmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "subjectId" | "type" | "title" | "date" | "totalMarks" | "createdAt" | "updatedAt" | "institutionId", ExtArgs["result"]["assessment"]>
-  export type AssessmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-    entries?: boolean | Assessment$entriesArgs<ExtArgs>
-    _count?: boolean | AssessmentCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type AssessmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-  }
-  export type AssessmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    institution?: boolean | InstitutionDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
-    subject?: boolean | SubjectDefaultArgs<ExtArgs>
-  }
-
-  export type $AssessmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Assessment"
-    objects: {
-      institution: Prisma.$InstitutionPayload<ExtArgs>
-      class: Prisma.$ClassPayload<ExtArgs>
-      subject: Prisma.$SubjectPayload<ExtArgs>
-      entries: Prisma.$AssessmentEntryPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      classId: string
-      subjectId: string
-      type: $Enums.AssessmentType
-      title: string
-      date: Date
-      totalMarks: number
-      createdAt: Date
-      updatedAt: Date
-      institutionId: string
-    }, ExtArgs["result"]["assessment"]>
-    composites: {}
-  }
-
-  type AssessmentGetPayload<S extends boolean | null | undefined | AssessmentDefaultArgs> = $Result.GetResult<Prisma.$AssessmentPayload, S>
-
-  type AssessmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AssessmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AssessmentCountAggregateInputType | true
-    }
-
-  export interface AssessmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Assessment'], meta: { name: 'Assessment' } }
-    /**
-     * Find zero or one Assessment that matches the filter.
-     * @param {AssessmentFindUniqueArgs} args - Arguments to find a Assessment
-     * @example
-     * // Get one Assessment
-     * const assessment = await prisma.assessment.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends AssessmentFindUniqueArgs>(args: SelectSubset<T, AssessmentFindUniqueArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Assessment that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {AssessmentFindUniqueOrThrowArgs} args - Arguments to find a Assessment
-     * @example
-     * // Get one Assessment
-     * const assessment = await prisma.assessment.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends AssessmentFindUniqueOrThrowArgs>(args: SelectSubset<T, AssessmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Assessment that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentFindFirstArgs} args - Arguments to find a Assessment
-     * @example
-     * // Get one Assessment
-     * const assessment = await prisma.assessment.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends AssessmentFindFirstArgs>(args?: SelectSubset<T, AssessmentFindFirstArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Assessment that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentFindFirstOrThrowArgs} args - Arguments to find a Assessment
-     * @example
-     * // Get one Assessment
-     * const assessment = await prisma.assessment.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends AssessmentFindFirstOrThrowArgs>(args?: SelectSubset<T, AssessmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Assessments that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Assessments
-     * const assessments = await prisma.assessment.findMany()
-     * 
-     * // Get first 10 Assessments
-     * const assessments = await prisma.assessment.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const assessmentWithIdOnly = await prisma.assessment.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends AssessmentFindManyArgs>(args?: SelectSubset<T, AssessmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Assessment.
-     * @param {AssessmentCreateArgs} args - Arguments to create a Assessment.
-     * @example
-     * // Create one Assessment
-     * const Assessment = await prisma.assessment.create({
-     *   data: {
-     *     // ... data to create a Assessment
-     *   }
-     * })
-     * 
-     */
-    create<T extends AssessmentCreateArgs>(args: SelectSubset<T, AssessmentCreateArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Assessments.
-     * @param {AssessmentCreateManyArgs} args - Arguments to create many Assessments.
-     * @example
-     * // Create many Assessments
-     * const assessment = await prisma.assessment.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends AssessmentCreateManyArgs>(args?: SelectSubset<T, AssessmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Assessments and returns the data saved in the database.
-     * @param {AssessmentCreateManyAndReturnArgs} args - Arguments to create many Assessments.
-     * @example
-     * // Create many Assessments
-     * const assessment = await prisma.assessment.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Assessments and only return the `id`
-     * const assessmentWithIdOnly = await prisma.assessment.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AssessmentCreateManyAndReturnArgs>(args?: SelectSubset<T, AssessmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Assessment.
-     * @param {AssessmentDeleteArgs} args - Arguments to delete one Assessment.
-     * @example
-     * // Delete one Assessment
-     * const Assessment = await prisma.assessment.delete({
-     *   where: {
-     *     // ... filter to delete one Assessment
-     *   }
-     * })
-     * 
-     */
-    delete<T extends AssessmentDeleteArgs>(args: SelectSubset<T, AssessmentDeleteArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Assessment.
-     * @param {AssessmentUpdateArgs} args - Arguments to update one Assessment.
-     * @example
-     * // Update one Assessment
-     * const assessment = await prisma.assessment.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends AssessmentUpdateArgs>(args: SelectSubset<T, AssessmentUpdateArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Assessments.
-     * @param {AssessmentDeleteManyArgs} args - Arguments to filter Assessments to delete.
-     * @example
-     * // Delete a few Assessments
-     * const { count } = await prisma.assessment.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends AssessmentDeleteManyArgs>(args?: SelectSubset<T, AssessmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Assessments.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Assessments
-     * const assessment = await prisma.assessment.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends AssessmentUpdateManyArgs>(args: SelectSubset<T, AssessmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Assessments and returns the data updated in the database.
-     * @param {AssessmentUpdateManyAndReturnArgs} args - Arguments to update many Assessments.
-     * @example
-     * // Update many Assessments
-     * const assessment = await prisma.assessment.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Assessments and only return the `id`
-     * const assessmentWithIdOnly = await prisma.assessment.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends AssessmentUpdateManyAndReturnArgs>(args: SelectSubset<T, AssessmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Assessment.
-     * @param {AssessmentUpsertArgs} args - Arguments to update or create a Assessment.
-     * @example
-     * // Update or create a Assessment
-     * const assessment = await prisma.assessment.upsert({
-     *   create: {
-     *     // ... data to create a Assessment
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Assessment we want to update
-     *   }
-     * })
-     */
-    upsert<T extends AssessmentUpsertArgs>(args: SelectSubset<T, AssessmentUpsertArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Assessments.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentCountArgs} args - Arguments to filter Assessments to count.
-     * @example
-     * // Count the number of Assessments
-     * const count = await prisma.assessment.count({
-     *   where: {
-     *     // ... the filter for the Assessments we want to count
-     *   }
-     * })
-    **/
-    count<T extends AssessmentCountArgs>(
-      args?: Subset<T, AssessmentCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AssessmentCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Assessment.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AssessmentAggregateArgs>(args: Subset<T, AssessmentAggregateArgs>): Prisma.PrismaPromise<GetAssessmentAggregateType<T>>
-
-    /**
-     * Group by Assessment.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AssessmentGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AssessmentGroupByArgs['orderBy'] }
-        : { orderBy?: AssessmentGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AssessmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssessmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Assessment model
-   */
-  readonly fields: AssessmentFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Assessment.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AssessmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    institution<T extends InstitutionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstitutionDefaultArgs<ExtArgs>>): Prisma__InstitutionClient<$Result.GetResult<Prisma.$InstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    class<T extends ClassDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassDefaultArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    entries<T extends Assessment$entriesArgs<ExtArgs> = {}>(args?: Subset<T, Assessment$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Assessment model
-   */
-  interface AssessmentFieldRefs {
-    readonly id: FieldRef<"Assessment", 'String'>
-    readonly classId: FieldRef<"Assessment", 'String'>
-    readonly subjectId: FieldRef<"Assessment", 'String'>
-    readonly type: FieldRef<"Assessment", 'AssessmentType'>
-    readonly title: FieldRef<"Assessment", 'String'>
-    readonly date: FieldRef<"Assessment", 'DateTime'>
-    readonly totalMarks: FieldRef<"Assessment", 'Int'>
-    readonly createdAt: FieldRef<"Assessment", 'DateTime'>
-    readonly updatedAt: FieldRef<"Assessment", 'DateTime'>
-    readonly institutionId: FieldRef<"Assessment", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Assessment findUnique
-   */
-  export type AssessmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter, which Assessment to fetch.
-     */
-    where: AssessmentWhereUniqueInput
-  }
-
-  /**
-   * Assessment findUniqueOrThrow
-   */
-  export type AssessmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter, which Assessment to fetch.
-     */
-    where: AssessmentWhereUniqueInput
-  }
-
-  /**
-   * Assessment findFirst
-   */
-  export type AssessmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter, which Assessment to fetch.
-     */
-    where?: AssessmentWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Assessments to fetch.
-     */
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Assessments.
-     */
-    cursor?: AssessmentWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Assessments from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Assessments.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Assessments.
-     */
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
-  }
-
-  /**
-   * Assessment findFirstOrThrow
-   */
-  export type AssessmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter, which Assessment to fetch.
-     */
-    where?: AssessmentWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Assessments to fetch.
-     */
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Assessments.
-     */
-    cursor?: AssessmentWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Assessments from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Assessments.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Assessments.
-     */
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
-  }
-
-  /**
-   * Assessment findMany
-   */
-  export type AssessmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter, which Assessments to fetch.
-     */
-    where?: AssessmentWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Assessments to fetch.
-     */
-    orderBy?: AssessmentOrderByWithRelationInput | AssessmentOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Assessments.
-     */
-    cursor?: AssessmentWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Assessments from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Assessments.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Assessments.
-     */
-    distinct?: AssessmentScalarFieldEnum | AssessmentScalarFieldEnum[]
-  }
-
-  /**
-   * Assessment create
-   */
-  export type AssessmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Assessment.
-     */
-    data: XOR<AssessmentCreateInput, AssessmentUncheckedCreateInput>
-  }
-
-  /**
-   * Assessment createMany
-   */
-  export type AssessmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Assessments.
-     */
-    data: AssessmentCreateManyInput | AssessmentCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Assessment createManyAndReturn
-   */
-  export type AssessmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * The data used to create many Assessments.
-     */
-    data: AssessmentCreateManyInput | AssessmentCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Assessment update
-   */
-  export type AssessmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Assessment.
-     */
-    data: XOR<AssessmentUpdateInput, AssessmentUncheckedUpdateInput>
-    /**
-     * Choose, which Assessment to update.
-     */
-    where: AssessmentWhereUniqueInput
-  }
-
-  /**
-   * Assessment updateMany
-   */
-  export type AssessmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Assessments.
-     */
-    data: XOR<AssessmentUpdateManyMutationInput, AssessmentUncheckedUpdateManyInput>
-    /**
-     * Filter which Assessments to update
-     */
-    where?: AssessmentWhereInput
-    /**
-     * Limit how many Assessments to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Assessment updateManyAndReturn
-   */
-  export type AssessmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * The data used to update Assessments.
-     */
-    data: XOR<AssessmentUpdateManyMutationInput, AssessmentUncheckedUpdateManyInput>
-    /**
-     * Filter which Assessments to update
-     */
-    where?: AssessmentWhereInput
-    /**
-     * Limit how many Assessments to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Assessment upsert
-   */
-  export type AssessmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Assessment to update in case it exists.
-     */
-    where: AssessmentWhereUniqueInput
-    /**
-     * In case the Assessment found by the `where` argument doesn't exist, create a new Assessment with this data.
-     */
-    create: XOR<AssessmentCreateInput, AssessmentUncheckedCreateInput>
-    /**
-     * In case the Assessment was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AssessmentUpdateInput, AssessmentUncheckedUpdateInput>
-  }
-
-  /**
-   * Assessment delete
-   */
-  export type AssessmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-    /**
-     * Filter which Assessment to delete.
-     */
-    where: AssessmentWhereUniqueInput
-  }
-
-  /**
-   * Assessment deleteMany
-   */
-  export type AssessmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Assessments to delete
-     */
-    where?: AssessmentWhereInput
-    /**
-     * Limit how many Assessments to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Assessment.entries
-   */
-  export type Assessment$entriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    where?: AssessmentEntryWhereInput
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    cursor?: AssessmentEntryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AssessmentEntryScalarFieldEnum | AssessmentEntryScalarFieldEnum[]
-  }
-
-  /**
-   * Assessment without action
-   */
-  export type AssessmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Assessment
-     */
-    select?: AssessmentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Assessment
-     */
-    omit?: AssessmentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model AssessmentEntry
-   */
-
-  export type AggregateAssessmentEntry = {
-    _count: AssessmentEntryCountAggregateOutputType | null
-    _avg: AssessmentEntryAvgAggregateOutputType | null
-    _sum: AssessmentEntrySumAggregateOutputType | null
-    _min: AssessmentEntryMinAggregateOutputType | null
-    _max: AssessmentEntryMaxAggregateOutputType | null
-  }
-
-  export type AssessmentEntryAvgAggregateOutputType = {
-    obtained: number | null
-  }
-
-  export type AssessmentEntrySumAggregateOutputType = {
-    obtained: number | null
-  }
-
-  export type AssessmentEntryMinAggregateOutputType = {
-    id: string | null
-    assessmentId: string | null
-    studentId: string | null
-    obtained: number | null
-  }
-
-  export type AssessmentEntryMaxAggregateOutputType = {
-    id: string | null
-    assessmentId: string | null
-    studentId: string | null
-    obtained: number | null
-  }
-
-  export type AssessmentEntryCountAggregateOutputType = {
-    id: number
-    assessmentId: number
-    studentId: number
-    obtained: number
-    _all: number
-  }
-
-
-  export type AssessmentEntryAvgAggregateInputType = {
-    obtained?: true
-  }
-
-  export type AssessmentEntrySumAggregateInputType = {
-    obtained?: true
-  }
-
-  export type AssessmentEntryMinAggregateInputType = {
-    id?: true
-    assessmentId?: true
-    studentId?: true
-    obtained?: true
-  }
-
-  export type AssessmentEntryMaxAggregateInputType = {
-    id?: true
-    assessmentId?: true
-    studentId?: true
-    obtained?: true
-  }
-
-  export type AssessmentEntryCountAggregateInputType = {
-    id?: true
-    assessmentId?: true
-    studentId?: true
-    obtained?: true
-    _all?: true
-  }
-
-  export type AssessmentEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AssessmentEntry to aggregate.
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AssessmentEntries to fetch.
-     */
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AssessmentEntryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AssessmentEntries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AssessmentEntries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned AssessmentEntries
-    **/
-    _count?: true | AssessmentEntryCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: AssessmentEntryAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AssessmentEntrySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AssessmentEntryMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AssessmentEntryMaxAggregateInputType
-  }
-
-  export type GetAssessmentEntryAggregateType<T extends AssessmentEntryAggregateArgs> = {
-        [P in keyof T & keyof AggregateAssessmentEntry]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAssessmentEntry[P]>
-      : GetScalarType<T[P], AggregateAssessmentEntry[P]>
-  }
-
-
-
-
-  export type AssessmentEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentEntryWhereInput
-    orderBy?: AssessmentEntryOrderByWithAggregationInput | AssessmentEntryOrderByWithAggregationInput[]
-    by: AssessmentEntryScalarFieldEnum[] | AssessmentEntryScalarFieldEnum
-    having?: AssessmentEntryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AssessmentEntryCountAggregateInputType | true
-    _avg?: AssessmentEntryAvgAggregateInputType
-    _sum?: AssessmentEntrySumAggregateInputType
-    _min?: AssessmentEntryMinAggregateInputType
-    _max?: AssessmentEntryMaxAggregateInputType
-  }
-
-  export type AssessmentEntryGroupByOutputType = {
-    id: string
-    assessmentId: string
-    studentId: string
-    obtained: number
-    _count: AssessmentEntryCountAggregateOutputType | null
-    _avg: AssessmentEntryAvgAggregateOutputType | null
-    _sum: AssessmentEntrySumAggregateOutputType | null
-    _min: AssessmentEntryMinAggregateOutputType | null
-    _max: AssessmentEntryMaxAggregateOutputType | null
-  }
-
-  type GetAssessmentEntryGroupByPayload<T extends AssessmentEntryGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AssessmentEntryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AssessmentEntryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AssessmentEntryGroupByOutputType[P]>
-            : GetScalarType<T[P], AssessmentEntryGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AssessmentEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    assessmentId?: boolean
-    studentId?: boolean
-    obtained?: boolean
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentEntry"]>
-
-  export type AssessmentEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    assessmentId?: boolean
-    studentId?: boolean
-    obtained?: boolean
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentEntry"]>
-
-  export type AssessmentEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    assessmentId?: boolean
-    studentId?: boolean
-    obtained?: boolean
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentEntry"]>
-
-  export type AssessmentEntrySelectScalar = {
-    id?: boolean
-    assessmentId?: boolean
-    studentId?: boolean
-    obtained?: boolean
-  }
-
-  export type AssessmentEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assessmentId" | "studentId" | "obtained", ExtArgs["result"]["assessmentEntry"]>
-  export type AssessmentEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }
-  export type AssessmentEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }
-  export type AssessmentEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    assessment?: boolean | AssessmentDefaultArgs<ExtArgs>
-    student?: boolean | StudentDefaultArgs<ExtArgs>
-  }
-
-  export type $AssessmentEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AssessmentEntry"
-    objects: {
-      assessment: Prisma.$AssessmentPayload<ExtArgs>
-      student: Prisma.$StudentPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      assessmentId: string
-      studentId: string
-      obtained: number
-    }, ExtArgs["result"]["assessmentEntry"]>
-    composites: {}
-  }
-
-  type AssessmentEntryGetPayload<S extends boolean | null | undefined | AssessmentEntryDefaultArgs> = $Result.GetResult<Prisma.$AssessmentEntryPayload, S>
-
-  type AssessmentEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AssessmentEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AssessmentEntryCountAggregateInputType | true
-    }
-
-  export interface AssessmentEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AssessmentEntry'], meta: { name: 'AssessmentEntry' } }
-    /**
-     * Find zero or one AssessmentEntry that matches the filter.
-     * @param {AssessmentEntryFindUniqueArgs} args - Arguments to find a AssessmentEntry
-     * @example
-     * // Get one AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends AssessmentEntryFindUniqueArgs>(args: SelectSubset<T, AssessmentEntryFindUniqueArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one AssessmentEntry that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {AssessmentEntryFindUniqueOrThrowArgs} args - Arguments to find a AssessmentEntry
-     * @example
-     * // Get one AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends AssessmentEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, AssessmentEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first AssessmentEntry that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryFindFirstArgs} args - Arguments to find a AssessmentEntry
-     * @example
-     * // Get one AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends AssessmentEntryFindFirstArgs>(args?: SelectSubset<T, AssessmentEntryFindFirstArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first AssessmentEntry that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryFindFirstOrThrowArgs} args - Arguments to find a AssessmentEntry
-     * @example
-     * // Get one AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends AssessmentEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, AssessmentEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more AssessmentEntries that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all AssessmentEntries
-     * const assessmentEntries = await prisma.assessmentEntry.findMany()
-     * 
-     * // Get first 10 AssessmentEntries
-     * const assessmentEntries = await prisma.assessmentEntry.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const assessmentEntryWithIdOnly = await prisma.assessmentEntry.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends AssessmentEntryFindManyArgs>(args?: SelectSubset<T, AssessmentEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a AssessmentEntry.
-     * @param {AssessmentEntryCreateArgs} args - Arguments to create a AssessmentEntry.
-     * @example
-     * // Create one AssessmentEntry
-     * const AssessmentEntry = await prisma.assessmentEntry.create({
-     *   data: {
-     *     // ... data to create a AssessmentEntry
-     *   }
-     * })
-     * 
-     */
-    create<T extends AssessmentEntryCreateArgs>(args: SelectSubset<T, AssessmentEntryCreateArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many AssessmentEntries.
-     * @param {AssessmentEntryCreateManyArgs} args - Arguments to create many AssessmentEntries.
-     * @example
-     * // Create many AssessmentEntries
-     * const assessmentEntry = await prisma.assessmentEntry.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends AssessmentEntryCreateManyArgs>(args?: SelectSubset<T, AssessmentEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many AssessmentEntries and returns the data saved in the database.
-     * @param {AssessmentEntryCreateManyAndReturnArgs} args - Arguments to create many AssessmentEntries.
-     * @example
-     * // Create many AssessmentEntries
-     * const assessmentEntry = await prisma.assessmentEntry.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many AssessmentEntries and only return the `id`
-     * const assessmentEntryWithIdOnly = await prisma.assessmentEntry.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AssessmentEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, AssessmentEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a AssessmentEntry.
-     * @param {AssessmentEntryDeleteArgs} args - Arguments to delete one AssessmentEntry.
-     * @example
-     * // Delete one AssessmentEntry
-     * const AssessmentEntry = await prisma.assessmentEntry.delete({
-     *   where: {
-     *     // ... filter to delete one AssessmentEntry
-     *   }
-     * })
-     * 
-     */
-    delete<T extends AssessmentEntryDeleteArgs>(args: SelectSubset<T, AssessmentEntryDeleteArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one AssessmentEntry.
-     * @param {AssessmentEntryUpdateArgs} args - Arguments to update one AssessmentEntry.
-     * @example
-     * // Update one AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends AssessmentEntryUpdateArgs>(args: SelectSubset<T, AssessmentEntryUpdateArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more AssessmentEntries.
-     * @param {AssessmentEntryDeleteManyArgs} args - Arguments to filter AssessmentEntries to delete.
-     * @example
-     * // Delete a few AssessmentEntries
-     * const { count } = await prisma.assessmentEntry.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends AssessmentEntryDeleteManyArgs>(args?: SelectSubset<T, AssessmentEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more AssessmentEntries.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many AssessmentEntries
-     * const assessmentEntry = await prisma.assessmentEntry.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends AssessmentEntryUpdateManyArgs>(args: SelectSubset<T, AssessmentEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more AssessmentEntries and returns the data updated in the database.
-     * @param {AssessmentEntryUpdateManyAndReturnArgs} args - Arguments to update many AssessmentEntries.
-     * @example
-     * // Update many AssessmentEntries
-     * const assessmentEntry = await prisma.assessmentEntry.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more AssessmentEntries and only return the `id`
-     * const assessmentEntryWithIdOnly = await prisma.assessmentEntry.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends AssessmentEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, AssessmentEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one AssessmentEntry.
-     * @param {AssessmentEntryUpsertArgs} args - Arguments to update or create a AssessmentEntry.
-     * @example
-     * // Update or create a AssessmentEntry
-     * const assessmentEntry = await prisma.assessmentEntry.upsert({
-     *   create: {
-     *     // ... data to create a AssessmentEntry
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the AssessmentEntry we want to update
-     *   }
-     * })
-     */
-    upsert<T extends AssessmentEntryUpsertArgs>(args: SelectSubset<T, AssessmentEntryUpsertArgs<ExtArgs>>): Prisma__AssessmentEntryClient<$Result.GetResult<Prisma.$AssessmentEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of AssessmentEntries.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryCountArgs} args - Arguments to filter AssessmentEntries to count.
-     * @example
-     * // Count the number of AssessmentEntries
-     * const count = await prisma.assessmentEntry.count({
-     *   where: {
-     *     // ... the filter for the AssessmentEntries we want to count
-     *   }
-     * })
-    **/
-    count<T extends AssessmentEntryCountArgs>(
-      args?: Subset<T, AssessmentEntryCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AssessmentEntryCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a AssessmentEntry.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AssessmentEntryAggregateArgs>(args: Subset<T, AssessmentEntryAggregateArgs>): Prisma.PrismaPromise<GetAssessmentEntryAggregateType<T>>
-
-    /**
-     * Group by AssessmentEntry.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentEntryGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AssessmentEntryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AssessmentEntryGroupByArgs['orderBy'] }
-        : { orderBy?: AssessmentEntryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AssessmentEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssessmentEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the AssessmentEntry model
-   */
-  readonly fields: AssessmentEntryFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for AssessmentEntry.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AssessmentEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    assessment<T extends AssessmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AssessmentDefaultArgs<ExtArgs>>): Prisma__AssessmentClient<$Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the AssessmentEntry model
-   */
-  interface AssessmentEntryFieldRefs {
-    readonly id: FieldRef<"AssessmentEntry", 'String'>
-    readonly assessmentId: FieldRef<"AssessmentEntry", 'String'>
-    readonly studentId: FieldRef<"AssessmentEntry", 'String'>
-    readonly obtained: FieldRef<"AssessmentEntry", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * AssessmentEntry findUnique
-   */
-  export type AssessmentEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter, which AssessmentEntry to fetch.
-     */
-    where: AssessmentEntryWhereUniqueInput
-  }
-
-  /**
-   * AssessmentEntry findUniqueOrThrow
-   */
-  export type AssessmentEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter, which AssessmentEntry to fetch.
-     */
-    where: AssessmentEntryWhereUniqueInput
-  }
-
-  /**
-   * AssessmentEntry findFirst
-   */
-  export type AssessmentEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter, which AssessmentEntry to fetch.
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AssessmentEntries to fetch.
-     */
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AssessmentEntries.
-     */
-    cursor?: AssessmentEntryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AssessmentEntries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AssessmentEntries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AssessmentEntries.
-     */
-    distinct?: AssessmentEntryScalarFieldEnum | AssessmentEntryScalarFieldEnum[]
-  }
-
-  /**
-   * AssessmentEntry findFirstOrThrow
-   */
-  export type AssessmentEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter, which AssessmentEntry to fetch.
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AssessmentEntries to fetch.
-     */
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AssessmentEntries.
-     */
-    cursor?: AssessmentEntryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AssessmentEntries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AssessmentEntries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AssessmentEntries.
-     */
-    distinct?: AssessmentEntryScalarFieldEnum | AssessmentEntryScalarFieldEnum[]
-  }
-
-  /**
-   * AssessmentEntry findMany
-   */
-  export type AssessmentEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter, which AssessmentEntries to fetch.
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AssessmentEntries to fetch.
-     */
-    orderBy?: AssessmentEntryOrderByWithRelationInput | AssessmentEntryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing AssessmentEntries.
-     */
-    cursor?: AssessmentEntryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AssessmentEntries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AssessmentEntries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AssessmentEntries.
-     */
-    distinct?: AssessmentEntryScalarFieldEnum | AssessmentEntryScalarFieldEnum[]
-  }
-
-  /**
-   * AssessmentEntry create
-   */
-  export type AssessmentEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * The data needed to create a AssessmentEntry.
-     */
-    data: XOR<AssessmentEntryCreateInput, AssessmentEntryUncheckedCreateInput>
-  }
-
-  /**
-   * AssessmentEntry createMany
-   */
-  export type AssessmentEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many AssessmentEntries.
-     */
-    data: AssessmentEntryCreateManyInput | AssessmentEntryCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * AssessmentEntry createManyAndReturn
-   */
-  export type AssessmentEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * The data used to create many AssessmentEntries.
-     */
-    data: AssessmentEntryCreateManyInput | AssessmentEntryCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * AssessmentEntry update
-   */
-  export type AssessmentEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * The data needed to update a AssessmentEntry.
-     */
-    data: XOR<AssessmentEntryUpdateInput, AssessmentEntryUncheckedUpdateInput>
-    /**
-     * Choose, which AssessmentEntry to update.
-     */
-    where: AssessmentEntryWhereUniqueInput
-  }
-
-  /**
-   * AssessmentEntry updateMany
-   */
-  export type AssessmentEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update AssessmentEntries.
-     */
-    data: XOR<AssessmentEntryUpdateManyMutationInput, AssessmentEntryUncheckedUpdateManyInput>
-    /**
-     * Filter which AssessmentEntries to update
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * Limit how many AssessmentEntries to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * AssessmentEntry updateManyAndReturn
-   */
-  export type AssessmentEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * The data used to update AssessmentEntries.
-     */
-    data: XOR<AssessmentEntryUpdateManyMutationInput, AssessmentEntryUncheckedUpdateManyInput>
-    /**
-     * Filter which AssessmentEntries to update
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * Limit how many AssessmentEntries to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * AssessmentEntry upsert
-   */
-  export type AssessmentEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * The filter to search for the AssessmentEntry to update in case it exists.
-     */
-    where: AssessmentEntryWhereUniqueInput
-    /**
-     * In case the AssessmentEntry found by the `where` argument doesn't exist, create a new AssessmentEntry with this data.
-     */
-    create: XOR<AssessmentEntryCreateInput, AssessmentEntryUncheckedCreateInput>
-    /**
-     * In case the AssessmentEntry was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AssessmentEntryUpdateInput, AssessmentEntryUncheckedUpdateInput>
-  }
-
-  /**
-   * AssessmentEntry delete
-   */
-  export type AssessmentEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-    /**
-     * Filter which AssessmentEntry to delete.
-     */
-    where: AssessmentEntryWhereUniqueInput
-  }
-
-  /**
-   * AssessmentEntry deleteMany
-   */
-  export type AssessmentEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AssessmentEntries to delete
-     */
-    where?: AssessmentEntryWhereInput
-    /**
-     * Limit how many AssessmentEntries to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * AssessmentEntry without action
-   */
-  export type AssessmentEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AssessmentEntry
-     */
-    select?: AssessmentEntrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AssessmentEntry
-     */
-    omit?: AssessmentEntryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AssessmentEntryInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model ExamMark
    */
 
@@ -22241,32 +19566,6 @@ export namespace Prisma {
   export type ExamClassScalarFieldEnum = (typeof ExamClassScalarFieldEnum)[keyof typeof ExamClassScalarFieldEnum]
 
 
-  export const AssessmentScalarFieldEnum: {
-    id: 'id',
-    classId: 'classId',
-    subjectId: 'subjectId',
-    type: 'type',
-    title: 'title',
-    date: 'date',
-    totalMarks: 'totalMarks',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    institutionId: 'institutionId'
-  };
-
-  export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
-
-
-  export const AssessmentEntryScalarFieldEnum: {
-    id: 'id',
-    assessmentId: 'assessmentId',
-    studentId: 'studentId',
-    obtained: 'obtained'
-  };
-
-  export type AssessmentEntryScalarFieldEnum = (typeof AssessmentEntryScalarFieldEnum)[keyof typeof AssessmentEntryScalarFieldEnum]
-
-
   export const ExamMarkScalarFieldEnum: {
     id: 'id',
     examId: 'examId',
@@ -22434,20 +19733,6 @@ export namespace Prisma {
    * Reference to a field of type 'ExamTerm[]'
    */
   export type ListEnumExamTermFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExamTerm[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'AssessmentType'
-   */
-  export type EnumAssessmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentType'>
-    
-
-
-  /**
-   * Reference to a field of type 'AssessmentType[]'
-   */
-  export type ListEnumAssessmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentType[]'>
     
 
 
@@ -22673,7 +19958,6 @@ export namespace Prisma {
     exams?: ExamListRelationFilter
     examClasses?: ExamClassListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessments?: AssessmentListRelationFilter
     resources?: ResourceListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
@@ -22695,7 +19979,6 @@ export namespace Prisma {
     exams?: ExamOrderByRelationAggregateInput
     examClasses?: ExamClassOrderByRelationAggregateInput
     examMarks?: ExamMarkOrderByRelationAggregateInput
-    assessments?: AssessmentOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     teacherSubjectClasses?: TeacherSubjectClassOrderByRelationAggregateInput
@@ -22720,7 +20003,6 @@ export namespace Prisma {
     exams?: ExamListRelationFilter
     examClasses?: ExamClassListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessments?: AssessmentListRelationFilter
     resources?: ResourceListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
@@ -22855,7 +20137,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
     attendances?: AttendanceListRelationFilter
     resources?: ResourceListRelationFilter
-    assessments?: AssessmentListRelationFilter
     examClasses?: ExamClassListRelationFilter
   }
 
@@ -22872,7 +20153,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
-    assessments?: AssessmentOrderByRelationAggregateInput
     examClasses?: ExamClassOrderByRelationAggregateInput
   }
 
@@ -22893,7 +20173,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
     attendances?: AttendanceListRelationFilter
     resources?: ResourceListRelationFilter
-    assessments?: AssessmentListRelationFilter
     examClasses?: ExamClassListRelationFilter
   }, "id" | "name_section">
 
@@ -22939,7 +20218,6 @@ export namespace Prisma {
     institution?: XOR<InstitutionScalarRelationFilter, InstitutionWhereInput>
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessments?: AssessmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     resources?: ResourceListRelationFilter
   }
@@ -22955,7 +20233,6 @@ export namespace Prisma {
     institution?: InstitutionOrderByWithRelationInput
     teacherSubjectClasses?: TeacherSubjectClassOrderByRelationAggregateInput
     examMarks?: ExamMarkOrderByRelationAggregateInput
-    assessments?: AssessmentOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
   }
@@ -22974,7 +20251,6 @@ export namespace Prisma {
     institution?: XOR<InstitutionScalarRelationFilter, InstitutionWhereInput>
     teacherSubjectClasses?: TeacherSubjectClassListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessments?: AssessmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     resources?: ResourceListRelationFilter
   }, "id" | "code">
@@ -23118,7 +20394,6 @@ export namespace Prisma {
     enrollments?: EnrollmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessmentEntries?: AssessmentEntryListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -23139,7 +20414,6 @@ export namespace Prisma {
     enrollments?: EnrollmentOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
     examMarks?: ExamMarkOrderByRelationAggregateInput
-    assessmentEntries?: AssessmentEntryOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -23163,7 +20437,6 @@ export namespace Prisma {
     enrollments?: EnrollmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     examMarks?: ExamMarkListRelationFilter
-    assessmentEntries?: AssessmentEntryListRelationFilter
   }, "id" | "admissionNumber">
 
   export type StudentOrderByWithAggregationInput = {
@@ -23507,153 +20780,6 @@ export namespace Prisma {
     examId?: UuidWithAggregatesFilter<"ExamClass"> | string
     classId?: UuidWithAggregatesFilter<"ExamClass"> | string
     institutionId?: UuidWithAggregatesFilter<"ExamClass"> | string
-  }
-
-  export type AssessmentWhereInput = {
-    AND?: AssessmentWhereInput | AssessmentWhereInput[]
-    OR?: AssessmentWhereInput[]
-    NOT?: AssessmentWhereInput | AssessmentWhereInput[]
-    id?: UuidFilter<"Assessment"> | string
-    classId?: UuidFilter<"Assessment"> | string
-    subjectId?: UuidFilter<"Assessment"> | string
-    type?: EnumAssessmentTypeFilter<"Assessment"> | $Enums.AssessmentType
-    title?: StringFilter<"Assessment"> | string
-    date?: DateTimeFilter<"Assessment"> | Date | string
-    totalMarks?: IntFilter<"Assessment"> | number
-    createdAt?: DateTimeFilter<"Assessment"> | Date | string
-    updatedAt?: DateTimeFilter<"Assessment"> | Date | string
-    institutionId?: UuidFilter<"Assessment"> | string
-    institution?: XOR<InstitutionScalarRelationFilter, InstitutionWhereInput>
-    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
-    subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
-    entries?: AssessmentEntryListRelationFilter
-  }
-
-  export type AssessmentOrderByWithRelationInput = {
-    id?: SortOrder
-    classId?: SortOrder
-    subjectId?: SortOrder
-    type?: SortOrder
-    title?: SortOrder
-    date?: SortOrder
-    totalMarks?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    institutionId?: SortOrder
-    institution?: InstitutionOrderByWithRelationInput
-    class?: ClassOrderByWithRelationInput
-    subject?: SubjectOrderByWithRelationInput
-    entries?: AssessmentEntryOrderByRelationAggregateInput
-  }
-
-  export type AssessmentWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: AssessmentWhereInput | AssessmentWhereInput[]
-    OR?: AssessmentWhereInput[]
-    NOT?: AssessmentWhereInput | AssessmentWhereInput[]
-    classId?: UuidFilter<"Assessment"> | string
-    subjectId?: UuidFilter<"Assessment"> | string
-    type?: EnumAssessmentTypeFilter<"Assessment"> | $Enums.AssessmentType
-    title?: StringFilter<"Assessment"> | string
-    date?: DateTimeFilter<"Assessment"> | Date | string
-    totalMarks?: IntFilter<"Assessment"> | number
-    createdAt?: DateTimeFilter<"Assessment"> | Date | string
-    updatedAt?: DateTimeFilter<"Assessment"> | Date | string
-    institutionId?: UuidFilter<"Assessment"> | string
-    institution?: XOR<InstitutionScalarRelationFilter, InstitutionWhereInput>
-    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
-    subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
-    entries?: AssessmentEntryListRelationFilter
-  }, "id">
-
-  export type AssessmentOrderByWithAggregationInput = {
-    id?: SortOrder
-    classId?: SortOrder
-    subjectId?: SortOrder
-    type?: SortOrder
-    title?: SortOrder
-    date?: SortOrder
-    totalMarks?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    institutionId?: SortOrder
-    _count?: AssessmentCountOrderByAggregateInput
-    _avg?: AssessmentAvgOrderByAggregateInput
-    _max?: AssessmentMaxOrderByAggregateInput
-    _min?: AssessmentMinOrderByAggregateInput
-    _sum?: AssessmentSumOrderByAggregateInput
-  }
-
-  export type AssessmentScalarWhereWithAggregatesInput = {
-    AND?: AssessmentScalarWhereWithAggregatesInput | AssessmentScalarWhereWithAggregatesInput[]
-    OR?: AssessmentScalarWhereWithAggregatesInput[]
-    NOT?: AssessmentScalarWhereWithAggregatesInput | AssessmentScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"Assessment"> | string
-    classId?: UuidWithAggregatesFilter<"Assessment"> | string
-    subjectId?: UuidWithAggregatesFilter<"Assessment"> | string
-    type?: EnumAssessmentTypeWithAggregatesFilter<"Assessment"> | $Enums.AssessmentType
-    title?: StringWithAggregatesFilter<"Assessment"> | string
-    date?: DateTimeWithAggregatesFilter<"Assessment"> | Date | string
-    totalMarks?: IntWithAggregatesFilter<"Assessment"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Assessment"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Assessment"> | Date | string
-    institutionId?: UuidWithAggregatesFilter<"Assessment"> | string
-  }
-
-  export type AssessmentEntryWhereInput = {
-    AND?: AssessmentEntryWhereInput | AssessmentEntryWhereInput[]
-    OR?: AssessmentEntryWhereInput[]
-    NOT?: AssessmentEntryWhereInput | AssessmentEntryWhereInput[]
-    id?: UuidFilter<"AssessmentEntry"> | string
-    assessmentId?: UuidFilter<"AssessmentEntry"> | string
-    studentId?: UuidFilter<"AssessmentEntry"> | string
-    obtained?: IntFilter<"AssessmentEntry"> | number
-    assessment?: XOR<AssessmentScalarRelationFilter, AssessmentWhereInput>
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
-  }
-
-  export type AssessmentEntryOrderByWithRelationInput = {
-    id?: SortOrder
-    assessmentId?: SortOrder
-    studentId?: SortOrder
-    obtained?: SortOrder
-    assessment?: AssessmentOrderByWithRelationInput
-    student?: StudentOrderByWithRelationInput
-  }
-
-  export type AssessmentEntryWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    assessmentId_studentId?: AssessmentEntryAssessmentIdStudentIdCompoundUniqueInput
-    AND?: AssessmentEntryWhereInput | AssessmentEntryWhereInput[]
-    OR?: AssessmentEntryWhereInput[]
-    NOT?: AssessmentEntryWhereInput | AssessmentEntryWhereInput[]
-    assessmentId?: UuidFilter<"AssessmentEntry"> | string
-    studentId?: UuidFilter<"AssessmentEntry"> | string
-    obtained?: IntFilter<"AssessmentEntry"> | number
-    assessment?: XOR<AssessmentScalarRelationFilter, AssessmentWhereInput>
-    student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
-  }, "id" | "assessmentId_studentId">
-
-  export type AssessmentEntryOrderByWithAggregationInput = {
-    id?: SortOrder
-    assessmentId?: SortOrder
-    studentId?: SortOrder
-    obtained?: SortOrder
-    _count?: AssessmentEntryCountOrderByAggregateInput
-    _avg?: AssessmentEntryAvgOrderByAggregateInput
-    _max?: AssessmentEntryMaxOrderByAggregateInput
-    _min?: AssessmentEntryMinOrderByAggregateInput
-    _sum?: AssessmentEntrySumOrderByAggregateInput
-  }
-
-  export type AssessmentEntryScalarWhereWithAggregatesInput = {
-    AND?: AssessmentEntryScalarWhereWithAggregatesInput | AssessmentEntryScalarWhereWithAggregatesInput[]
-    OR?: AssessmentEntryScalarWhereWithAggregatesInput[]
-    NOT?: AssessmentEntryScalarWhereWithAggregatesInput | AssessmentEntryScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"AssessmentEntry"> | string
-    assessmentId?: UuidWithAggregatesFilter<"AssessmentEntry"> | string
-    studentId?: UuidWithAggregatesFilter<"AssessmentEntry"> | string
-    obtained?: IntWithAggregatesFilter<"AssessmentEntry"> | number
   }
 
   export type ExamMarkWhereInput = {
@@ -24051,7 +21177,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -24072,7 +21197,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -24093,7 +21217,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -24114,7 +21237,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -24255,7 +21377,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -24271,7 +21392,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -24287,7 +21407,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -24303,7 +21422,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -24346,7 +21464,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutSubjectsInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceCreateNestedManyWithoutSubjectInput
     resources?: ResourceCreateNestedManyWithoutSubjectInput
   }
@@ -24361,7 +21478,6 @@ export namespace Prisma {
     institutionId: string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
     resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
   }
@@ -24376,7 +21492,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUpdateManyWithoutSubjectNestedInput
   }
@@ -24391,7 +21506,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
   }
@@ -24529,7 +21643,6 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -24549,7 +21662,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -24569,7 +21681,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -24589,7 +21700,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -24927,145 +22037,6 @@ export namespace Prisma {
     examId?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AssessmentCreateInput = {
-    id?: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutAssessmentsInput
-    class: ClassCreateNestedOneWithoutAssessmentsInput
-    subject: SubjectCreateNestedOneWithoutAssessmentsInput
-    entries?: AssessmentEntryCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentUncheckedCreateInput = {
-    id?: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    entries?: AssessmentEntryUncheckedCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutAssessmentsNestedInput
-    class?: ClassUpdateOneRequiredWithoutAssessmentsNestedInput
-    subject?: SubjectUpdateOneRequiredWithoutAssessmentsNestedInput
-    entries?: AssessmentEntryUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    entries?: AssessmentEntryUncheckedUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentCreateManyInput = {
-    id?: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-  }
-
-  export type AssessmentUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AssessmentUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AssessmentEntryCreateInput = {
-    id?: string
-    obtained?: number
-    assessment: AssessmentCreateNestedOneWithoutEntriesInput
-    student: StudentCreateNestedOneWithoutAssessmentEntriesInput
-  }
-
-  export type AssessmentEntryUncheckedCreateInput = {
-    id?: string
-    assessmentId: string
-    studentId: string
-    obtained?: number
-  }
-
-  export type AssessmentEntryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-    assessment?: AssessmentUpdateOneRequiredWithoutEntriesNestedInput
-    student?: StudentUpdateOneRequiredWithoutAssessmentEntriesNestedInput
-  }
-
-  export type AssessmentEntryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    assessmentId?: StringFieldUpdateOperationsInput | string
-    studentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AssessmentEntryCreateManyInput = {
-    id?: string
-    assessmentId: string
-    studentId: string
-    obtained?: number
-  }
-
-  export type AssessmentEntryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AssessmentEntryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    assessmentId?: StringFieldUpdateOperationsInput | string
-    studentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
   }
 
   export type ExamMarkCreateInput = {
@@ -25647,12 +22618,6 @@ export namespace Prisma {
     none?: ExamClassWhereInput
   }
 
-  export type AssessmentListRelationFilter = {
-    every?: AssessmentWhereInput
-    some?: AssessmentWhereInput
-    none?: AssessmentWhereInput
-  }
-
   export type EnrollmentListRelationFilter = {
     every?: EnrollmentWhereInput
     some?: EnrollmentWhereInput
@@ -25690,10 +22655,6 @@ export namespace Prisma {
   }
 
   export type ExamClassOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AssessmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25952,16 +22913,6 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
-  export type AssessmentEntryListRelationFilter = {
-    every?: AssessmentEntryWhereInput
-    some?: AssessmentEntryWhereInput
-    none?: AssessmentEntryWhereInput
-  }
-
-  export type AssessmentEntryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type StudentCountOrderByAggregateInput = {
     id?: SortOrder
     admissionNumber?: SortOrder
@@ -26213,136 +23164,6 @@ export namespace Prisma {
     examId?: SortOrder
     classId?: SortOrder
     institutionId?: SortOrder
-  }
-
-  export type EnumAssessmentTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.AssessmentType | EnumAssessmentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAssessmentTypeFilter<$PrismaModel> | $Enums.AssessmentType
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type AssessmentCountOrderByAggregateInput = {
-    id?: SortOrder
-    classId?: SortOrder
-    subjectId?: SortOrder
-    type?: SortOrder
-    title?: SortOrder
-    date?: SortOrder
-    totalMarks?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    institutionId?: SortOrder
-  }
-
-  export type AssessmentAvgOrderByAggregateInput = {
-    totalMarks?: SortOrder
-  }
-
-  export type AssessmentMaxOrderByAggregateInput = {
-    id?: SortOrder
-    classId?: SortOrder
-    subjectId?: SortOrder
-    type?: SortOrder
-    title?: SortOrder
-    date?: SortOrder
-    totalMarks?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    institutionId?: SortOrder
-  }
-
-  export type AssessmentMinOrderByAggregateInput = {
-    id?: SortOrder
-    classId?: SortOrder
-    subjectId?: SortOrder
-    type?: SortOrder
-    title?: SortOrder
-    date?: SortOrder
-    totalMarks?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    institutionId?: SortOrder
-  }
-
-  export type AssessmentSumOrderByAggregateInput = {
-    totalMarks?: SortOrder
-  }
-
-  export type EnumAssessmentTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AssessmentType | EnumAssessmentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAssessmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAssessmentTypeFilter<$PrismaModel>
-    _max?: NestedEnumAssessmentTypeFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type AssessmentScalarRelationFilter = {
-    is?: AssessmentWhereInput
-    isNot?: AssessmentWhereInput
-  }
-
-  export type AssessmentEntryAssessmentIdStudentIdCompoundUniqueInput = {
-    assessmentId: string
-    studentId: string
-  }
-
-  export type AssessmentEntryCountOrderByAggregateInput = {
-    id?: SortOrder
-    assessmentId?: SortOrder
-    studentId?: SortOrder
-    obtained?: SortOrder
-  }
-
-  export type AssessmentEntryAvgOrderByAggregateInput = {
-    obtained?: SortOrder
-  }
-
-  export type AssessmentEntryMaxOrderByAggregateInput = {
-    id?: SortOrder
-    assessmentId?: SortOrder
-    studentId?: SortOrder
-    obtained?: SortOrder
-  }
-
-  export type AssessmentEntryMinOrderByAggregateInput = {
-    id?: SortOrder
-    assessmentId?: SortOrder
-    studentId?: SortOrder
-    obtained?: SortOrder
-  }
-
-  export type AssessmentEntrySumOrderByAggregateInput = {
-    obtained?: SortOrder
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -26850,13 +23671,6 @@ export namespace Prisma {
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
   }
 
-  export type AssessmentCreateNestedManyWithoutInstitutionInput = {
-    create?: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput> | AssessmentCreateWithoutInstitutionInput[] | AssessmentUncheckedCreateWithoutInstitutionInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutInstitutionInput | AssessmentCreateOrConnectWithoutInstitutionInput[]
-    createMany?: AssessmentCreateManyInstitutionInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-  }
-
   export type ResourceCreateNestedManyWithoutInstitutionInput = {
     create?: XOR<ResourceCreateWithoutInstitutionInput, ResourceUncheckedCreateWithoutInstitutionInput> | ResourceCreateWithoutInstitutionInput[] | ResourceUncheckedCreateWithoutInstitutionInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutInstitutionInput | ResourceCreateOrConnectWithoutInstitutionInput[]
@@ -26939,13 +23753,6 @@ export namespace Prisma {
     connectOrCreate?: ExamMarkCreateOrConnectWithoutInstitutionInput | ExamMarkCreateOrConnectWithoutInstitutionInput[]
     createMany?: ExamMarkCreateManyInstitutionInputEnvelope
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
-  }
-
-  export type AssessmentUncheckedCreateNestedManyWithoutInstitutionInput = {
-    create?: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput> | AssessmentCreateWithoutInstitutionInput[] | AssessmentUncheckedCreateWithoutInstitutionInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutInstitutionInput | AssessmentCreateOrConnectWithoutInstitutionInput[]
-    createMany?: AssessmentCreateManyInstitutionInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
   }
 
   export type ResourceUncheckedCreateNestedManyWithoutInstitutionInput = {
@@ -27103,20 +23910,6 @@ export namespace Prisma {
     update?: ExamMarkUpdateWithWhereUniqueWithoutInstitutionInput | ExamMarkUpdateWithWhereUniqueWithoutInstitutionInput[]
     updateMany?: ExamMarkUpdateManyWithWhereWithoutInstitutionInput | ExamMarkUpdateManyWithWhereWithoutInstitutionInput[]
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
-  }
-
-  export type AssessmentUpdateManyWithoutInstitutionNestedInput = {
-    create?: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput> | AssessmentCreateWithoutInstitutionInput[] | AssessmentUncheckedCreateWithoutInstitutionInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutInstitutionInput | AssessmentCreateOrConnectWithoutInstitutionInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutInstitutionInput | AssessmentUpsertWithWhereUniqueWithoutInstitutionInput[]
-    createMany?: AssessmentCreateManyInstitutionInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutInstitutionInput | AssessmentUpdateWithWhereUniqueWithoutInstitutionInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutInstitutionInput | AssessmentUpdateManyWithWhereWithoutInstitutionInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
   }
 
   export type ResourceUpdateManyWithoutInstitutionNestedInput = {
@@ -27287,20 +24080,6 @@ export namespace Prisma {
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
   }
 
-  export type AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput = {
-    create?: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput> | AssessmentCreateWithoutInstitutionInput[] | AssessmentUncheckedCreateWithoutInstitutionInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutInstitutionInput | AssessmentCreateOrConnectWithoutInstitutionInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutInstitutionInput | AssessmentUpsertWithWhereUniqueWithoutInstitutionInput[]
-    createMany?: AssessmentCreateManyInstitutionInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutInstitutionInput | AssessmentUpdateWithWhereUniqueWithoutInstitutionInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutInstitutionInput | AssessmentUpdateManyWithWhereWithoutInstitutionInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
-  }
-
   export type ResourceUncheckedUpdateManyWithoutInstitutionNestedInput = {
     create?: XOR<ResourceCreateWithoutInstitutionInput, ResourceUncheckedCreateWithoutInstitutionInput> | ResourceCreateWithoutInstitutionInput[] | ResourceUncheckedCreateWithoutInstitutionInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutInstitutionInput | ResourceCreateOrConnectWithoutInstitutionInput[]
@@ -27447,13 +24226,6 @@ export namespace Prisma {
     connect?: ResourceWhereUniqueInput | ResourceWhereUniqueInput[]
   }
 
-  export type AssessmentCreateNestedManyWithoutClassInput = {
-    create?: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput> | AssessmentCreateWithoutClassInput[] | AssessmentUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutClassInput | AssessmentCreateOrConnectWithoutClassInput[]
-    createMany?: AssessmentCreateManyClassInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-  }
-
   export type ExamClassCreateNestedManyWithoutClassInput = {
     create?: XOR<ExamClassCreateWithoutClassInput, ExamClassUncheckedCreateWithoutClassInput> | ExamClassCreateWithoutClassInput[] | ExamClassUncheckedCreateWithoutClassInput[]
     connectOrCreate?: ExamClassCreateOrConnectWithoutClassInput | ExamClassCreateOrConnectWithoutClassInput[]
@@ -27487,13 +24259,6 @@ export namespace Prisma {
     connectOrCreate?: ResourceCreateOrConnectWithoutClassInput | ResourceCreateOrConnectWithoutClassInput[]
     createMany?: ResourceCreateManyClassInputEnvelope
     connect?: ResourceWhereUniqueInput | ResourceWhereUniqueInput[]
-  }
-
-  export type AssessmentUncheckedCreateNestedManyWithoutClassInput = {
-    create?: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput> | AssessmentCreateWithoutClassInput[] | AssessmentUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutClassInput | AssessmentCreateOrConnectWithoutClassInput[]
-    createMany?: AssessmentCreateManyClassInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
   }
 
   export type ExamClassUncheckedCreateNestedManyWithoutClassInput = {
@@ -27575,20 +24340,6 @@ export namespace Prisma {
     deleteMany?: ResourceScalarWhereInput | ResourceScalarWhereInput[]
   }
 
-  export type AssessmentUpdateManyWithoutClassNestedInput = {
-    create?: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput> | AssessmentCreateWithoutClassInput[] | AssessmentUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutClassInput | AssessmentCreateOrConnectWithoutClassInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutClassInput | AssessmentUpsertWithWhereUniqueWithoutClassInput[]
-    createMany?: AssessmentCreateManyClassInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutClassInput | AssessmentUpdateWithWhereUniqueWithoutClassInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutClassInput | AssessmentUpdateManyWithWhereWithoutClassInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
-  }
-
   export type ExamClassUpdateManyWithoutClassNestedInput = {
     create?: XOR<ExamClassCreateWithoutClassInput, ExamClassUncheckedCreateWithoutClassInput> | ExamClassCreateWithoutClassInput[] | ExamClassUncheckedCreateWithoutClassInput[]
     connectOrCreate?: ExamClassCreateOrConnectWithoutClassInput | ExamClassCreateOrConnectWithoutClassInput[]
@@ -27659,20 +24410,6 @@ export namespace Prisma {
     deleteMany?: ResourceScalarWhereInput | ResourceScalarWhereInput[]
   }
 
-  export type AssessmentUncheckedUpdateManyWithoutClassNestedInput = {
-    create?: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput> | AssessmentCreateWithoutClassInput[] | AssessmentUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutClassInput | AssessmentCreateOrConnectWithoutClassInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutClassInput | AssessmentUpsertWithWhereUniqueWithoutClassInput[]
-    createMany?: AssessmentCreateManyClassInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutClassInput | AssessmentUpdateWithWhereUniqueWithoutClassInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutClassInput | AssessmentUpdateManyWithWhereWithoutClassInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
-  }
-
   export type ExamClassUncheckedUpdateManyWithoutClassNestedInput = {
     create?: XOR<ExamClassCreateWithoutClassInput, ExamClassUncheckedCreateWithoutClassInput> | ExamClassCreateWithoutClassInput[] | ExamClassUncheckedCreateWithoutClassInput[]
     connectOrCreate?: ExamClassCreateOrConnectWithoutClassInput | ExamClassCreateOrConnectWithoutClassInput[]
@@ -27707,13 +24444,6 @@ export namespace Prisma {
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
   }
 
-  export type AssessmentCreateNestedManyWithoutSubjectInput = {
-    create?: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput> | AssessmentCreateWithoutSubjectInput[] | AssessmentUncheckedCreateWithoutSubjectInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutSubjectInput | AssessmentCreateOrConnectWithoutSubjectInput[]
-    createMany?: AssessmentCreateManySubjectInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-  }
-
   export type AttendanceCreateNestedManyWithoutSubjectInput = {
     create?: XOR<AttendanceCreateWithoutSubjectInput, AttendanceUncheckedCreateWithoutSubjectInput> | AttendanceCreateWithoutSubjectInput[] | AttendanceUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutSubjectInput | AttendanceCreateOrConnectWithoutSubjectInput[]
@@ -27740,13 +24470,6 @@ export namespace Prisma {
     connectOrCreate?: ExamMarkCreateOrConnectWithoutSubjectInput | ExamMarkCreateOrConnectWithoutSubjectInput[]
     createMany?: ExamMarkCreateManySubjectInputEnvelope
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
-  }
-
-  export type AssessmentUncheckedCreateNestedManyWithoutSubjectInput = {
-    create?: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput> | AssessmentCreateWithoutSubjectInput[] | AssessmentUncheckedCreateWithoutSubjectInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutSubjectInput | AssessmentCreateOrConnectWithoutSubjectInput[]
-    createMany?: AssessmentCreateManySubjectInputEnvelope
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
   }
 
   export type AttendanceUncheckedCreateNestedManyWithoutSubjectInput = {
@@ -27797,20 +24520,6 @@ export namespace Prisma {
     update?: ExamMarkUpdateWithWhereUniqueWithoutSubjectInput | ExamMarkUpdateWithWhereUniqueWithoutSubjectInput[]
     updateMany?: ExamMarkUpdateManyWithWhereWithoutSubjectInput | ExamMarkUpdateManyWithWhereWithoutSubjectInput[]
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
-  }
-
-  export type AssessmentUpdateManyWithoutSubjectNestedInput = {
-    create?: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput> | AssessmentCreateWithoutSubjectInput[] | AssessmentUncheckedCreateWithoutSubjectInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutSubjectInput | AssessmentCreateOrConnectWithoutSubjectInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutSubjectInput | AssessmentUpsertWithWhereUniqueWithoutSubjectInput[]
-    createMany?: AssessmentCreateManySubjectInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutSubjectInput | AssessmentUpdateWithWhereUniqueWithoutSubjectInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutSubjectInput | AssessmentUpdateManyWithWhereWithoutSubjectInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
   }
 
   export type AttendanceUpdateManyWithoutSubjectNestedInput = {
@@ -27867,20 +24576,6 @@ export namespace Prisma {
     update?: ExamMarkUpdateWithWhereUniqueWithoutSubjectInput | ExamMarkUpdateWithWhereUniqueWithoutSubjectInput[]
     updateMany?: ExamMarkUpdateManyWithWhereWithoutSubjectInput | ExamMarkUpdateManyWithWhereWithoutSubjectInput[]
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
-  }
-
-  export type AssessmentUncheckedUpdateManyWithoutSubjectNestedInput = {
-    create?: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput> | AssessmentCreateWithoutSubjectInput[] | AssessmentUncheckedCreateWithoutSubjectInput[]
-    connectOrCreate?: AssessmentCreateOrConnectWithoutSubjectInput | AssessmentCreateOrConnectWithoutSubjectInput[]
-    upsert?: AssessmentUpsertWithWhereUniqueWithoutSubjectInput | AssessmentUpsertWithWhereUniqueWithoutSubjectInput[]
-    createMany?: AssessmentCreateManySubjectInputEnvelope
-    set?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    disconnect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    delete?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    connect?: AssessmentWhereUniqueInput | AssessmentWhereUniqueInput[]
-    update?: AssessmentUpdateWithWhereUniqueWithoutSubjectInput | AssessmentUpdateWithWhereUniqueWithoutSubjectInput[]
-    updateMany?: AssessmentUpdateManyWithWhereWithoutSubjectInput | AssessmentUpdateManyWithWhereWithoutSubjectInput[]
-    deleteMany?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
   }
 
   export type AttendanceUncheckedUpdateManyWithoutSubjectNestedInput = {
@@ -27994,13 +24689,6 @@ export namespace Prisma {
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
   }
 
-  export type AssessmentEntryCreateNestedManyWithoutStudentInput = {
-    create?: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput> | AssessmentEntryCreateWithoutStudentInput[] | AssessmentEntryUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutStudentInput | AssessmentEntryCreateOrConnectWithoutStudentInput[]
-    createMany?: AssessmentEntryCreateManyStudentInputEnvelope
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-  }
-
   export type EnrollmentUncheckedCreateNestedManyWithoutStudentInput = {
     create?: XOR<EnrollmentCreateWithoutStudentInput, EnrollmentUncheckedCreateWithoutStudentInput> | EnrollmentCreateWithoutStudentInput[] | EnrollmentUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: EnrollmentCreateOrConnectWithoutStudentInput | EnrollmentCreateOrConnectWithoutStudentInput[]
@@ -28020,13 +24708,6 @@ export namespace Prisma {
     connectOrCreate?: ExamMarkCreateOrConnectWithoutStudentInput | ExamMarkCreateOrConnectWithoutStudentInput[]
     createMany?: ExamMarkCreateManyStudentInputEnvelope
     connect?: ExamMarkWhereUniqueInput | ExamMarkWhereUniqueInput[]
-  }
-
-  export type AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput> | AssessmentEntryCreateWithoutStudentInput[] | AssessmentEntryUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutStudentInput | AssessmentEntryCreateOrConnectWithoutStudentInput[]
-    createMany?: AssessmentEntryCreateManyStudentInputEnvelope
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
   }
 
   export type EnumGenderFieldUpdateOperationsInput = {
@@ -28083,20 +24764,6 @@ export namespace Prisma {
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
   }
 
-  export type AssessmentEntryUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput> | AssessmentEntryCreateWithoutStudentInput[] | AssessmentEntryUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutStudentInput | AssessmentEntryCreateOrConnectWithoutStudentInput[]
-    upsert?: AssessmentEntryUpsertWithWhereUniqueWithoutStudentInput | AssessmentEntryUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: AssessmentEntryCreateManyStudentInputEnvelope
-    set?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    disconnect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    delete?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    update?: AssessmentEntryUpdateWithWhereUniqueWithoutStudentInput | AssessmentEntryUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: AssessmentEntryUpdateManyWithWhereWithoutStudentInput | AssessmentEntryUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
-  }
-
   export type EnrollmentUncheckedUpdateManyWithoutStudentNestedInput = {
     create?: XOR<EnrollmentCreateWithoutStudentInput, EnrollmentUncheckedCreateWithoutStudentInput> | EnrollmentCreateWithoutStudentInput[] | EnrollmentUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: EnrollmentCreateOrConnectWithoutStudentInput | EnrollmentCreateOrConnectWithoutStudentInput[]
@@ -28137,20 +24804,6 @@ export namespace Prisma {
     update?: ExamMarkUpdateWithWhereUniqueWithoutStudentInput | ExamMarkUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ExamMarkUpdateManyWithWhereWithoutStudentInput | ExamMarkUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ExamMarkScalarWhereInput | ExamMarkScalarWhereInput[]
-  }
-
-  export type AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput> | AssessmentEntryCreateWithoutStudentInput[] | AssessmentEntryUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutStudentInput | AssessmentEntryCreateOrConnectWithoutStudentInput[]
-    upsert?: AssessmentEntryUpsertWithWhereUniqueWithoutStudentInput | AssessmentEntryUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: AssessmentEntryCreateManyStudentInputEnvelope
-    set?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    disconnect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    delete?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    update?: AssessmentEntryUpdateWithWhereUniqueWithoutStudentInput | AssessmentEntryUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: AssessmentEntryUpdateManyWithWhereWithoutStudentInput | AssessmentEntryUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
   }
 
   export type InstitutionCreateNestedOneWithoutEnrollmentsInput = {
@@ -28411,130 +25064,6 @@ export namespace Prisma {
     upsert?: ClassUpsertWithoutExamClassesInput
     connect?: ClassWhereUniqueInput
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutExamClassesInput, ClassUpdateWithoutExamClassesInput>, ClassUncheckedUpdateWithoutExamClassesInput>
-  }
-
-  export type InstitutionCreateNestedOneWithoutAssessmentsInput = {
-    create?: XOR<InstitutionCreateWithoutAssessmentsInput, InstitutionUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: InstitutionCreateOrConnectWithoutAssessmentsInput
-    connect?: InstitutionWhereUniqueInput
-  }
-
-  export type ClassCreateNestedOneWithoutAssessmentsInput = {
-    create?: XOR<ClassCreateWithoutAssessmentsInput, ClassUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: ClassCreateOrConnectWithoutAssessmentsInput
-    connect?: ClassWhereUniqueInput
-  }
-
-  export type SubjectCreateNestedOneWithoutAssessmentsInput = {
-    create?: XOR<SubjectCreateWithoutAssessmentsInput, SubjectUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: SubjectCreateOrConnectWithoutAssessmentsInput
-    connect?: SubjectWhereUniqueInput
-  }
-
-  export type AssessmentEntryCreateNestedManyWithoutAssessmentInput = {
-    create?: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput> | AssessmentEntryCreateWithoutAssessmentInput[] | AssessmentEntryUncheckedCreateWithoutAssessmentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutAssessmentInput | AssessmentEntryCreateOrConnectWithoutAssessmentInput[]
-    createMany?: AssessmentEntryCreateManyAssessmentInputEnvelope
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-  }
-
-  export type AssessmentEntryUncheckedCreateNestedManyWithoutAssessmentInput = {
-    create?: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput> | AssessmentEntryCreateWithoutAssessmentInput[] | AssessmentEntryUncheckedCreateWithoutAssessmentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutAssessmentInput | AssessmentEntryCreateOrConnectWithoutAssessmentInput[]
-    createMany?: AssessmentEntryCreateManyAssessmentInputEnvelope
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-  }
-
-  export type EnumAssessmentTypeFieldUpdateOperationsInput = {
-    set?: $Enums.AssessmentType
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type InstitutionUpdateOneRequiredWithoutAssessmentsNestedInput = {
-    create?: XOR<InstitutionCreateWithoutAssessmentsInput, InstitutionUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: InstitutionCreateOrConnectWithoutAssessmentsInput
-    upsert?: InstitutionUpsertWithoutAssessmentsInput
-    connect?: InstitutionWhereUniqueInput
-    update?: XOR<XOR<InstitutionUpdateToOneWithWhereWithoutAssessmentsInput, InstitutionUpdateWithoutAssessmentsInput>, InstitutionUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type ClassUpdateOneRequiredWithoutAssessmentsNestedInput = {
-    create?: XOR<ClassCreateWithoutAssessmentsInput, ClassUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: ClassCreateOrConnectWithoutAssessmentsInput
-    upsert?: ClassUpsertWithoutAssessmentsInput
-    connect?: ClassWhereUniqueInput
-    update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutAssessmentsInput, ClassUpdateWithoutAssessmentsInput>, ClassUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type SubjectUpdateOneRequiredWithoutAssessmentsNestedInput = {
-    create?: XOR<SubjectCreateWithoutAssessmentsInput, SubjectUncheckedCreateWithoutAssessmentsInput>
-    connectOrCreate?: SubjectCreateOrConnectWithoutAssessmentsInput
-    upsert?: SubjectUpsertWithoutAssessmentsInput
-    connect?: SubjectWhereUniqueInput
-    update?: XOR<XOR<SubjectUpdateToOneWithWhereWithoutAssessmentsInput, SubjectUpdateWithoutAssessmentsInput>, SubjectUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type AssessmentEntryUpdateManyWithoutAssessmentNestedInput = {
-    create?: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput> | AssessmentEntryCreateWithoutAssessmentInput[] | AssessmentEntryUncheckedCreateWithoutAssessmentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutAssessmentInput | AssessmentEntryCreateOrConnectWithoutAssessmentInput[]
-    upsert?: AssessmentEntryUpsertWithWhereUniqueWithoutAssessmentInput | AssessmentEntryUpsertWithWhereUniqueWithoutAssessmentInput[]
-    createMany?: AssessmentEntryCreateManyAssessmentInputEnvelope
-    set?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    disconnect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    delete?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    update?: AssessmentEntryUpdateWithWhereUniqueWithoutAssessmentInput | AssessmentEntryUpdateWithWhereUniqueWithoutAssessmentInput[]
-    updateMany?: AssessmentEntryUpdateManyWithWhereWithoutAssessmentInput | AssessmentEntryUpdateManyWithWhereWithoutAssessmentInput[]
-    deleteMany?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
-  }
-
-  export type AssessmentEntryUncheckedUpdateManyWithoutAssessmentNestedInput = {
-    create?: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput> | AssessmentEntryCreateWithoutAssessmentInput[] | AssessmentEntryUncheckedCreateWithoutAssessmentInput[]
-    connectOrCreate?: AssessmentEntryCreateOrConnectWithoutAssessmentInput | AssessmentEntryCreateOrConnectWithoutAssessmentInput[]
-    upsert?: AssessmentEntryUpsertWithWhereUniqueWithoutAssessmentInput | AssessmentEntryUpsertWithWhereUniqueWithoutAssessmentInput[]
-    createMany?: AssessmentEntryCreateManyAssessmentInputEnvelope
-    set?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    disconnect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    delete?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    connect?: AssessmentEntryWhereUniqueInput | AssessmentEntryWhereUniqueInput[]
-    update?: AssessmentEntryUpdateWithWhereUniqueWithoutAssessmentInput | AssessmentEntryUpdateWithWhereUniqueWithoutAssessmentInput[]
-    updateMany?: AssessmentEntryUpdateManyWithWhereWithoutAssessmentInput | AssessmentEntryUpdateManyWithWhereWithoutAssessmentInput[]
-    deleteMany?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
-  }
-
-  export type AssessmentCreateNestedOneWithoutEntriesInput = {
-    create?: XOR<AssessmentCreateWithoutEntriesInput, AssessmentUncheckedCreateWithoutEntriesInput>
-    connectOrCreate?: AssessmentCreateOrConnectWithoutEntriesInput
-    connect?: AssessmentWhereUniqueInput
-  }
-
-  export type StudentCreateNestedOneWithoutAssessmentEntriesInput = {
-    create?: XOR<StudentCreateWithoutAssessmentEntriesInput, StudentUncheckedCreateWithoutAssessmentEntriesInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutAssessmentEntriesInput
-    connect?: StudentWhereUniqueInput
-  }
-
-  export type AssessmentUpdateOneRequiredWithoutEntriesNestedInput = {
-    create?: XOR<AssessmentCreateWithoutEntriesInput, AssessmentUncheckedCreateWithoutEntriesInput>
-    connectOrCreate?: AssessmentCreateOrConnectWithoutEntriesInput
-    upsert?: AssessmentUpsertWithoutEntriesInput
-    connect?: AssessmentWhereUniqueInput
-    update?: XOR<XOR<AssessmentUpdateToOneWithWhereWithoutEntriesInput, AssessmentUpdateWithoutEntriesInput>, AssessmentUncheckedUpdateWithoutEntriesInput>
-  }
-
-  export type StudentUpdateOneRequiredWithoutAssessmentEntriesNestedInput = {
-    create?: XOR<StudentCreateWithoutAssessmentEntriesInput, StudentUncheckedCreateWithoutAssessmentEntriesInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutAssessmentEntriesInput
-    upsert?: StudentUpsertWithoutAssessmentEntriesInput
-    connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutAssessmentEntriesInput, StudentUpdateWithoutAssessmentEntriesInput>, StudentUncheckedUpdateWithoutAssessmentEntriesInput>
   }
 
   export type InstitutionCreateNestedOneWithoutExamMarksInput = {
@@ -28967,50 +25496,6 @@ export namespace Prisma {
     _max?: NestedEnumExamTermFilter<$PrismaModel>
   }
 
-  export type NestedEnumAssessmentTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.AssessmentType | EnumAssessmentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAssessmentTypeFilter<$PrismaModel> | $Enums.AssessmentType
-  }
-
-  export type NestedEnumAssessmentTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AssessmentType | EnumAssessmentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AssessmentType[] | ListEnumAssessmentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAssessmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAssessmentTypeFilter<$PrismaModel>
-    _max?: NestedEnumAssessmentTypeFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -29069,7 +25554,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -29089,7 +25573,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -29282,7 +25765,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -29302,7 +25784,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -29343,7 +25824,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -29363,7 +25843,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -29743,7 +26222,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -29758,7 +26236,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -29781,7 +26258,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceCreateNestedManyWithoutSubjectInput
     resources?: ResourceCreateNestedManyWithoutSubjectInput
   }
@@ -29795,7 +26271,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
     resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
   }
@@ -29826,7 +26301,6 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutInstitutionInput = {
@@ -29845,7 +26319,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutInstitutionInput = {
@@ -30021,42 +26494,6 @@ export namespace Prisma {
 
   export type ExamMarkCreateManyInstitutionInputEnvelope = {
     data: ExamMarkCreateManyInstitutionInput | ExamMarkCreateManyInstitutionInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AssessmentCreateWithoutInstitutionInput = {
-    id?: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    class: ClassCreateNestedOneWithoutAssessmentsInput
-    subject: SubjectCreateNestedOneWithoutAssessmentsInput
-    entries?: AssessmentEntryCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentUncheckedCreateWithoutInstitutionInput = {
-    id?: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    entries?: AssessmentEntryUncheckedCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentCreateOrConnectWithoutInstitutionInput = {
-    where: AssessmentWhereUniqueInput
-    create: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput>
-  }
-
-  export type AssessmentCreateManyInstitutionInputEnvelope = {
-    data: AssessmentCreateManyInstitutionInput | AssessmentCreateManyInstitutionInput[]
     skipDuplicates?: boolean
   }
 
@@ -30452,38 +26889,6 @@ export namespace Prisma {
     data: XOR<ExamMarkUpdateManyMutationInput, ExamMarkUncheckedUpdateManyWithoutInstitutionInput>
   }
 
-  export type AssessmentUpsertWithWhereUniqueWithoutInstitutionInput = {
-    where: AssessmentWhereUniqueInput
-    update: XOR<AssessmentUpdateWithoutInstitutionInput, AssessmentUncheckedUpdateWithoutInstitutionInput>
-    create: XOR<AssessmentCreateWithoutInstitutionInput, AssessmentUncheckedCreateWithoutInstitutionInput>
-  }
-
-  export type AssessmentUpdateWithWhereUniqueWithoutInstitutionInput = {
-    where: AssessmentWhereUniqueInput
-    data: XOR<AssessmentUpdateWithoutInstitutionInput, AssessmentUncheckedUpdateWithoutInstitutionInput>
-  }
-
-  export type AssessmentUpdateManyWithWhereWithoutInstitutionInput = {
-    where: AssessmentScalarWhereInput
-    data: XOR<AssessmentUpdateManyMutationInput, AssessmentUncheckedUpdateManyWithoutInstitutionInput>
-  }
-
-  export type AssessmentScalarWhereInput = {
-    AND?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
-    OR?: AssessmentScalarWhereInput[]
-    NOT?: AssessmentScalarWhereInput | AssessmentScalarWhereInput[]
-    id?: UuidFilter<"Assessment"> | string
-    classId?: UuidFilter<"Assessment"> | string
-    subjectId?: UuidFilter<"Assessment"> | string
-    type?: EnumAssessmentTypeFilter<"Assessment"> | $Enums.AssessmentType
-    title?: StringFilter<"Assessment"> | string
-    date?: DateTimeFilter<"Assessment"> | Date | string
-    totalMarks?: IntFilter<"Assessment"> | number
-    createdAt?: DateTimeFilter<"Assessment"> | Date | string
-    updatedAt?: DateTimeFilter<"Assessment"> | Date | string
-    institutionId?: UuidFilter<"Assessment"> | string
-  }
-
   export type ResourceUpsertWithWhereUniqueWithoutInstitutionInput = {
     where: ResourceWhereUniqueInput
     update: XOR<ResourceUpdateWithoutInstitutionInput, ResourceUncheckedUpdateWithoutInstitutionInput>
@@ -30575,7 +26980,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -30595,7 +26999,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -30704,7 +27107,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -30724,7 +27126,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -30805,7 +27206,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -30825,7 +27225,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -30974,42 +27373,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AssessmentCreateWithoutClassInput = {
-    id?: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutAssessmentsInput
-    subject: SubjectCreateNestedOneWithoutAssessmentsInput
-    entries?: AssessmentEntryCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentUncheckedCreateWithoutClassInput = {
-    id?: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    entries?: AssessmentEntryUncheckedCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentCreateOrConnectWithoutClassInput = {
-    where: AssessmentWhereUniqueInput
-    create: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput>
-  }
-
-  export type AssessmentCreateManyClassInputEnvelope = {
-    data: AssessmentCreateManyClassInput | AssessmentCreateManyClassInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ExamClassCreateWithoutClassInput = {
     id?: string
     institution: InstitutionCreateNestedOneWithoutExamClassesInput
@@ -31057,7 +27420,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -31077,7 +27439,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -31147,22 +27508,6 @@ export namespace Prisma {
     data: XOR<ResourceUpdateManyMutationInput, ResourceUncheckedUpdateManyWithoutClassInput>
   }
 
-  export type AssessmentUpsertWithWhereUniqueWithoutClassInput = {
-    where: AssessmentWhereUniqueInput
-    update: XOR<AssessmentUpdateWithoutClassInput, AssessmentUncheckedUpdateWithoutClassInput>
-    create: XOR<AssessmentCreateWithoutClassInput, AssessmentUncheckedCreateWithoutClassInput>
-  }
-
-  export type AssessmentUpdateWithWhereUniqueWithoutClassInput = {
-    where: AssessmentWhereUniqueInput
-    data: XOR<AssessmentUpdateWithoutClassInput, AssessmentUncheckedUpdateWithoutClassInput>
-  }
-
-  export type AssessmentUpdateManyWithWhereWithoutClassInput = {
-    where: AssessmentScalarWhereInput
-    data: XOR<AssessmentUpdateManyMutationInput, AssessmentUncheckedUpdateManyWithoutClassInput>
-  }
-
   export type ExamClassUpsertWithWhereUniqueWithoutClassInput = {
     where: ExamClassWhereUniqueInput
     update: XOR<ExamClassUpdateWithoutClassInput, ExamClassUncheckedUpdateWithoutClassInput>
@@ -31193,7 +27538,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -31213,7 +27557,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -31291,42 +27634,6 @@ export namespace Prisma {
 
   export type ExamMarkCreateManySubjectInputEnvelope = {
     data: ExamMarkCreateManySubjectInput | ExamMarkCreateManySubjectInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AssessmentCreateWithoutSubjectInput = {
-    id?: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutAssessmentsInput
-    class: ClassCreateNestedOneWithoutAssessmentsInput
-    entries?: AssessmentEntryCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentUncheckedCreateWithoutSubjectInput = {
-    id?: string
-    classId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    entries?: AssessmentEntryUncheckedCreateNestedManyWithoutAssessmentInput
-  }
-
-  export type AssessmentCreateOrConnectWithoutSubjectInput = {
-    where: AssessmentWhereUniqueInput
-    create: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput>
-  }
-
-  export type AssessmentCreateManySubjectInputEnvelope = {
-    data: AssessmentCreateManySubjectInput | AssessmentCreateManySubjectInput[]
     skipDuplicates?: boolean
   }
 
@@ -31431,7 +27738,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -31451,7 +27757,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -31487,22 +27792,6 @@ export namespace Prisma {
   export type ExamMarkUpdateManyWithWhereWithoutSubjectInput = {
     where: ExamMarkScalarWhereInput
     data: XOR<ExamMarkUpdateManyMutationInput, ExamMarkUncheckedUpdateManyWithoutSubjectInput>
-  }
-
-  export type AssessmentUpsertWithWhereUniqueWithoutSubjectInput = {
-    where: AssessmentWhereUniqueInput
-    update: XOR<AssessmentUpdateWithoutSubjectInput, AssessmentUncheckedUpdateWithoutSubjectInput>
-    create: XOR<AssessmentCreateWithoutSubjectInput, AssessmentUncheckedCreateWithoutSubjectInput>
-  }
-
-  export type AssessmentUpdateWithWhereUniqueWithoutSubjectInput = {
-    where: AssessmentWhereUniqueInput
-    data: XOR<AssessmentUpdateWithoutSubjectInput, AssessmentUncheckedUpdateWithoutSubjectInput>
-  }
-
-  export type AssessmentUpdateManyWithWhereWithoutSubjectInput = {
-    where: AssessmentScalarWhereInput
-    data: XOR<AssessmentUpdateManyMutationInput, AssessmentUncheckedUpdateManyWithoutSubjectInput>
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -31552,7 +27841,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
   }
@@ -31572,7 +27860,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
   }
@@ -31626,7 +27913,6 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -31641,7 +27927,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -31659,7 +27944,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     institution: InstitutionCreateNestedOneWithoutSubjectsInput
     examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceCreateNestedManyWithoutSubjectInput
     resources?: ResourceCreateNestedManyWithoutSubjectInput
   }
@@ -31673,7 +27957,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     institutionId: string
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
     resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
   }
@@ -31709,7 +27992,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
   }
@@ -31729,7 +28011,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
   }
@@ -31795,7 +28076,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -31810,7 +28090,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -31834,7 +28113,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
     examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUpdateManyWithoutSubjectNestedInput
   }
@@ -31848,7 +28126,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     institutionId?: StringFieldUpdateOperationsInput | string
     examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
   }
@@ -31867,7 +28144,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -31887,7 +28163,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -31998,28 +28273,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AssessmentEntryCreateWithoutStudentInput = {
-    id?: string
-    obtained?: number
-    assessment: AssessmentCreateNestedOneWithoutEntriesInput
-  }
-
-  export type AssessmentEntryUncheckedCreateWithoutStudentInput = {
-    id?: string
-    assessmentId: string
-    obtained?: number
-  }
-
-  export type AssessmentEntryCreateOrConnectWithoutStudentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    create: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput>
-  }
-
-  export type AssessmentEntryCreateManyStudentInputEnvelope = {
-    data: AssessmentEntryCreateManyStudentInput | AssessmentEntryCreateManyStudentInput[]
-    skipDuplicates?: boolean
-  }
-
   export type InstitutionUpsertWithoutStudentsInput = {
     update: XOR<InstitutionUpdateWithoutStudentsInput, InstitutionUncheckedUpdateWithoutStudentsInput>
     create: XOR<InstitutionCreateWithoutStudentsInput, InstitutionUncheckedCreateWithoutStudentsInput>
@@ -32045,7 +28298,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -32065,7 +28317,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -32119,32 +28370,6 @@ export namespace Prisma {
     data: XOR<ExamMarkUpdateManyMutationInput, ExamMarkUncheckedUpdateManyWithoutStudentInput>
   }
 
-  export type AssessmentEntryUpsertWithWhereUniqueWithoutStudentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    update: XOR<AssessmentEntryUpdateWithoutStudentInput, AssessmentEntryUncheckedUpdateWithoutStudentInput>
-    create: XOR<AssessmentEntryCreateWithoutStudentInput, AssessmentEntryUncheckedCreateWithoutStudentInput>
-  }
-
-  export type AssessmentEntryUpdateWithWhereUniqueWithoutStudentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    data: XOR<AssessmentEntryUpdateWithoutStudentInput, AssessmentEntryUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type AssessmentEntryUpdateManyWithWhereWithoutStudentInput = {
-    where: AssessmentEntryScalarWhereInput
-    data: XOR<AssessmentEntryUpdateManyMutationInput, AssessmentEntryUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type AssessmentEntryScalarWhereInput = {
-    AND?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
-    OR?: AssessmentEntryScalarWhereInput[]
-    NOT?: AssessmentEntryScalarWhereInput | AssessmentEntryScalarWhereInput[]
-    id?: UuidFilter<"AssessmentEntry"> | string
-    assessmentId?: UuidFilter<"AssessmentEntry"> | string
-    studentId?: UuidFilter<"AssessmentEntry"> | string
-    obtained?: IntFilter<"AssessmentEntry"> | number
-  }
-
   export type InstitutionCreateWithoutEnrollmentsInput = {
     id?: string
     name: string
@@ -32160,7 +28385,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
   }
@@ -32180,7 +28404,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
   }
@@ -32206,7 +28429,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutStudentsInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -32225,7 +28447,6 @@ export namespace Prisma {
     institutionId: string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -32244,7 +28465,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -32259,7 +28479,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -32294,7 +28513,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
   }
@@ -32314,7 +28532,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
   }
@@ -32346,7 +28563,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutStudentsNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -32365,7 +28581,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassUpsertWithoutEnrollmentsInput = {
@@ -32390,7 +28605,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -32405,7 +28619,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -32423,7 +28636,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -32443,7 +28655,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -32470,7 +28681,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutStudentsInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAttendancesInput = {
@@ -32489,7 +28699,6 @@ export namespace Prisma {
     institutionId: string
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAttendancesInput = {
@@ -32508,7 +28717,6 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutClassInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -32523,7 +28731,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutClassInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -32542,7 +28749,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutSubjectsInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     resources?: ResourceCreateNestedManyWithoutSubjectInput
   }
 
@@ -32556,7 +28762,6 @@ export namespace Prisma {
     institutionId: string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
   }
 
@@ -32629,7 +28834,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -32649,7 +28853,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -32682,7 +28885,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutStudentsNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAttendancesInput = {
@@ -32701,7 +28903,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ClassUpsertWithoutAttendancesInput = {
@@ -32726,7 +28927,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutClassNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -32741,7 +28941,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutClassNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -32766,7 +28965,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUpdateManyWithoutSubjectNestedInput
   }
 
@@ -32780,7 +28978,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
@@ -32843,7 +29040,6 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -32863,7 +29059,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -32957,7 +29152,6 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -32977,7 +29171,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -33029,7 +29222,6 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutInstitutionInput
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -33049,7 +29241,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutInstitutionInput
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -33101,7 +29292,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
     resources?: ResourceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
   }
 
   export type ClassUncheckedCreateWithoutExamClassesInput = {
@@ -33116,7 +29306,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
     resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
   }
 
   export type ClassCreateOrConnectWithoutExamClassesInput = {
@@ -33149,7 +29338,6 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutInstitutionNestedInput
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -33169,7 +29357,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutInstitutionNestedInput
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -33233,7 +29420,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateWithoutExamClassesInput = {
@@ -33248,449 +29434,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
-  }
-
-  export type InstitutionCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy?: UserCreateNestedOneWithoutCreatedInstitutionsInput
-    members?: UserCreateNestedManyWithoutInstitutionInput
-    classes?: ClassCreateNestedManyWithoutInstitutionInput
-    subjects?: SubjectCreateNestedManyWithoutInstitutionInput
-    students?: StudentCreateNestedManyWithoutInstitutionInput
-    teacherProfiles?: TeacherProfileCreateNestedManyWithoutInstitutionInput
-    attendances?: AttendanceCreateNestedManyWithoutInstitutionInput
-    exams?: ExamCreateNestedManyWithoutInstitutionInput
-    examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
-    examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    resources?: ResourceCreateNestedManyWithoutInstitutionInput
-    enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
-    teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
-  }
-
-  export type InstitutionUncheckedCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    createdById?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    members?: UserUncheckedCreateNestedManyWithoutInstitutionInput
-    classes?: ClassUncheckedCreateNestedManyWithoutInstitutionInput
-    subjects?: SubjectUncheckedCreateNestedManyWithoutInstitutionInput
-    students?: StudentUncheckedCreateNestedManyWithoutInstitutionInput
-    teacherProfiles?: TeacherProfileUncheckedCreateNestedManyWithoutInstitutionInput
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutInstitutionInput
-    exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
-    examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
-    examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
-    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
-  }
-
-  export type InstitutionCreateOrConnectWithoutAssessmentsInput = {
-    where: InstitutionWhereUniqueInput
-    create: XOR<InstitutionCreateWithoutAssessmentsInput, InstitutionUncheckedCreateWithoutAssessmentsInput>
-  }
-
-  export type ClassCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    section: string
-    capacity?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutClassesInput
-    enrollments?: EnrollmentCreateNestedManyWithoutClassInput
-    teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
-    attendances?: AttendanceCreateNestedManyWithoutClassInput
-    resources?: ResourceCreateNestedManyWithoutClassInput
-    examClasses?: ExamClassCreateNestedManyWithoutClassInput
-  }
-
-  export type ClassUncheckedCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    section: string
-    capacity?: number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutClassInput
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
-    resources?: ResourceUncheckedCreateNestedManyWithoutClassInput
-    examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
-  }
-
-  export type ClassCreateOrConnectWithoutAssessmentsInput = {
-    where: ClassWhereUniqueInput
-    create: XOR<ClassCreateWithoutAssessmentsInput, ClassUncheckedCreateWithoutAssessmentsInput>
-  }
-
-  export type SubjectCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    code: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutSubjectsInput
-    teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
-    examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    attendances?: AttendanceCreateNestedManyWithoutSubjectInput
-    resources?: ResourceCreateNestedManyWithoutSubjectInput
-  }
-
-  export type SubjectUncheckedCreateWithoutAssessmentsInput = {
-    id?: string
-    name: string
-    code: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
-    examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
-    resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
-  }
-
-  export type SubjectCreateOrConnectWithoutAssessmentsInput = {
-    where: SubjectWhereUniqueInput
-    create: XOR<SubjectCreateWithoutAssessmentsInput, SubjectUncheckedCreateWithoutAssessmentsInput>
-  }
-
-  export type AssessmentEntryCreateWithoutAssessmentInput = {
-    id?: string
-    obtained?: number
-    student: StudentCreateNestedOneWithoutAssessmentEntriesInput
-  }
-
-  export type AssessmentEntryUncheckedCreateWithoutAssessmentInput = {
-    id?: string
-    studentId: string
-    obtained?: number
-  }
-
-  export type AssessmentEntryCreateOrConnectWithoutAssessmentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    create: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput>
-  }
-
-  export type AssessmentEntryCreateManyAssessmentInputEnvelope = {
-    data: AssessmentEntryCreateManyAssessmentInput | AssessmentEntryCreateManyAssessmentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type InstitutionUpsertWithoutAssessmentsInput = {
-    update: XOR<InstitutionUpdateWithoutAssessmentsInput, InstitutionUncheckedUpdateWithoutAssessmentsInput>
-    create: XOR<InstitutionCreateWithoutAssessmentsInput, InstitutionUncheckedCreateWithoutAssessmentsInput>
-    where?: InstitutionWhereInput
-  }
-
-  export type InstitutionUpdateToOneWithWhereWithoutAssessmentsInput = {
-    where?: InstitutionWhereInput
-    data: XOR<InstitutionUpdateWithoutAssessmentsInput, InstitutionUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type InstitutionUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: UserUpdateOneWithoutCreatedInstitutionsNestedInput
-    members?: UserUpdateManyWithoutInstitutionNestedInput
-    classes?: ClassUpdateManyWithoutInstitutionNestedInput
-    subjects?: SubjectUpdateManyWithoutInstitutionNestedInput
-    students?: StudentUpdateManyWithoutInstitutionNestedInput
-    teacherProfiles?: TeacherProfileUpdateManyWithoutInstitutionNestedInput
-    attendances?: AttendanceUpdateManyWithoutInstitutionNestedInput
-    exams?: ExamUpdateManyWithoutInstitutionNestedInput
-    examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
-    examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    resources?: ResourceUpdateManyWithoutInstitutionNestedInput
-    enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
-    teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
-  }
-
-  export type InstitutionUncheckedUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    createdById?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: UserUncheckedUpdateManyWithoutInstitutionNestedInput
-    classes?: ClassUncheckedUpdateManyWithoutInstitutionNestedInput
-    subjects?: SubjectUncheckedUpdateManyWithoutInstitutionNestedInput
-    students?: StudentUncheckedUpdateManyWithoutInstitutionNestedInput
-    teacherProfiles?: TeacherProfileUncheckedUpdateManyWithoutInstitutionNestedInput
-    attendances?: AttendanceUncheckedUpdateManyWithoutInstitutionNestedInput
-    exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
-    examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
-    examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
-    enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
-  }
-
-  export type ClassUpsertWithoutAssessmentsInput = {
-    update: XOR<ClassUpdateWithoutAssessmentsInput, ClassUncheckedUpdateWithoutAssessmentsInput>
-    create: XOR<ClassCreateWithoutAssessmentsInput, ClassUncheckedCreateWithoutAssessmentsInput>
-    where?: ClassWhereInput
-  }
-
-  export type ClassUpdateToOneWithWhereWithoutAssessmentsInput = {
-    where?: ClassWhereInput
-    data: XOR<ClassUpdateWithoutAssessmentsInput, ClassUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type ClassUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    section?: StringFieldUpdateOperationsInput | string
-    capacity?: NullableIntFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutClassesNestedInput
-    enrollments?: EnrollmentUpdateManyWithoutClassNestedInput
-    teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
-    attendances?: AttendanceUpdateManyWithoutClassNestedInput
-    resources?: ResourceUpdateManyWithoutClassNestedInput
-    examClasses?: ExamClassUpdateManyWithoutClassNestedInput
-  }
-
-  export type ClassUncheckedUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    section?: StringFieldUpdateOperationsInput | string
-    capacity?: NullableIntFieldUpdateOperationsInput | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    enrollments?: EnrollmentUncheckedUpdateManyWithoutClassNestedInput
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
-    attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
-    resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
-  }
-
-  export type SubjectUpsertWithoutAssessmentsInput = {
-    update: XOR<SubjectUpdateWithoutAssessmentsInput, SubjectUncheckedUpdateWithoutAssessmentsInput>
-    create: XOR<SubjectCreateWithoutAssessmentsInput, SubjectUncheckedCreateWithoutAssessmentsInput>
-    where?: SubjectWhereInput
-  }
-
-  export type SubjectUpdateToOneWithWhereWithoutAssessmentsInput = {
-    where?: SubjectWhereInput
-    data: XOR<SubjectUpdateWithoutAssessmentsInput, SubjectUncheckedUpdateWithoutAssessmentsInput>
-  }
-
-  export type SubjectUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
-    teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
-    examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
-    resources?: ResourceUpdateManyWithoutSubjectNestedInput
-  }
-
-  export type SubjectUncheckedUpdateWithoutAssessmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
-    examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
-    resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
-  }
-
-  export type AssessmentEntryUpsertWithWhereUniqueWithoutAssessmentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    update: XOR<AssessmentEntryUpdateWithoutAssessmentInput, AssessmentEntryUncheckedUpdateWithoutAssessmentInput>
-    create: XOR<AssessmentEntryCreateWithoutAssessmentInput, AssessmentEntryUncheckedCreateWithoutAssessmentInput>
-  }
-
-  export type AssessmentEntryUpdateWithWhereUniqueWithoutAssessmentInput = {
-    where: AssessmentEntryWhereUniqueInput
-    data: XOR<AssessmentEntryUpdateWithoutAssessmentInput, AssessmentEntryUncheckedUpdateWithoutAssessmentInput>
-  }
-
-  export type AssessmentEntryUpdateManyWithWhereWithoutAssessmentInput = {
-    where: AssessmentEntryScalarWhereInput
-    data: XOR<AssessmentEntryUpdateManyMutationInput, AssessmentEntryUncheckedUpdateManyWithoutAssessmentInput>
-  }
-
-  export type AssessmentCreateWithoutEntriesInput = {
-    id?: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutAssessmentsInput
-    class: ClassCreateNestedOneWithoutAssessmentsInput
-    subject: SubjectCreateNestedOneWithoutAssessmentsInput
-  }
-
-  export type AssessmentUncheckedCreateWithoutEntriesInput = {
-    id?: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-  }
-
-  export type AssessmentCreateOrConnectWithoutEntriesInput = {
-    where: AssessmentWhereUniqueInput
-    create: XOR<AssessmentCreateWithoutEntriesInput, AssessmentUncheckedCreateWithoutEntriesInput>
-  }
-
-  export type StudentCreateWithoutAssessmentEntriesInput = {
-    id?: string
-    admissionNumber: string
-    firstName: string
-    lastName: string
-    dob: Date | string
-    gender: $Enums.Gender
-    guardianName?: string | null
-    guardianPhone?: string | null
-    address?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institution: InstitutionCreateNestedOneWithoutStudentsInput
-    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
-    attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    examMarks?: ExamMarkCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentUncheckedCreateWithoutAssessmentEntriesInput = {
-    id?: string
-    admissionNumber: string
-    firstName: string
-    lastName: string
-    dob: Date | string
-    gender: $Enums.Gender
-    guardianName?: string | null
-    guardianPhone?: string | null
-    address?: string | null
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    examMarks?: ExamMarkUncheckedCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentCreateOrConnectWithoutAssessmentEntriesInput = {
-    where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutAssessmentEntriesInput, StudentUncheckedCreateWithoutAssessmentEntriesInput>
-  }
-
-  export type AssessmentUpsertWithoutEntriesInput = {
-    update: XOR<AssessmentUpdateWithoutEntriesInput, AssessmentUncheckedUpdateWithoutEntriesInput>
-    create: XOR<AssessmentCreateWithoutEntriesInput, AssessmentUncheckedCreateWithoutEntriesInput>
-    where?: AssessmentWhereInput
-  }
-
-  export type AssessmentUpdateToOneWithWhereWithoutEntriesInput = {
-    where?: AssessmentWhereInput
-    data: XOR<AssessmentUpdateWithoutEntriesInput, AssessmentUncheckedUpdateWithoutEntriesInput>
-  }
-
-  export type AssessmentUpdateWithoutEntriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutAssessmentsNestedInput
-    class?: ClassUpdateOneRequiredWithoutAssessmentsNestedInput
-    subject?: SubjectUpdateOneRequiredWithoutAssessmentsNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateWithoutEntriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StudentUpsertWithoutAssessmentEntriesInput = {
-    update: XOR<StudentUpdateWithoutAssessmentEntriesInput, StudentUncheckedUpdateWithoutAssessmentEntriesInput>
-    create: XOR<StudentCreateWithoutAssessmentEntriesInput, StudentUncheckedCreateWithoutAssessmentEntriesInput>
-    where?: StudentWhereInput
-  }
-
-  export type StudentUpdateToOneWithWhereWithoutAssessmentEntriesInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutAssessmentEntriesInput, StudentUncheckedUpdateWithoutAssessmentEntriesInput>
-  }
-
-  export type StudentUpdateWithoutAssessmentEntriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    admissionNumber?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    guardianName?: NullableStringFieldUpdateOperationsInput | string | null
-    guardianPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutStudentsNestedInput
-    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
-    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
-    examMarks?: ExamMarkUpdateManyWithoutStudentNestedInput
-  }
-
-  export type StudentUncheckedUpdateWithoutAssessmentEntriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    admissionNumber?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    guardianName?: NullableStringFieldUpdateOperationsInput | string | null
-    guardianPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
-    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
-    examMarks?: ExamMarkUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type InstitutionCreateWithoutExamMarksInput = {
@@ -33707,7 +29450,6 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutInstitutionInput
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     resources?: ResourceCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
@@ -33727,7 +29469,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedCreateNestedManyWithoutInstitutionInput
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     resources?: ResourceUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
@@ -33783,7 +29524,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutStudentsInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutExamMarksInput = {
@@ -33802,7 +29542,6 @@ export namespace Prisma {
     institutionId: string
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    assessmentEntries?: AssessmentEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutExamMarksInput = {
@@ -33819,7 +29558,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     institution: InstitutionCreateNestedOneWithoutSubjectsInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceCreateNestedManyWithoutSubjectInput
     resources?: ResourceCreateNestedManyWithoutSubjectInput
   }
@@ -33833,7 +29571,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     institutionId: string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
     resources?: ResourceUncheckedCreateNestedManyWithoutSubjectInput
   }
@@ -33907,7 +29644,6 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutInstitutionNestedInput
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -33927,7 +29663,6 @@ export namespace Prisma {
     attendances?: AttendanceUncheckedUpdateManyWithoutInstitutionNestedInput
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -33995,7 +29730,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutStudentsNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutExamMarksInput = {
@@ -34014,7 +29748,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SubjectUpsertWithoutExamMarksInput = {
@@ -34037,7 +29770,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUpdateManyWithoutSubjectNestedInput
   }
@@ -34051,7 +29783,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     institutionId?: StringFieldUpdateOperationsInput | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
   }
@@ -34116,7 +29847,6 @@ export namespace Prisma {
     exams?: ExamCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutInstitutionInput
   }
@@ -34136,7 +29866,6 @@ export namespace Prisma {
     exams?: ExamUncheckedCreateNestedManyWithoutInstitutionInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutInstitutionInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutInstitutionInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutInstitutionInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutInstitutionInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutInstitutionInput
   }
@@ -34157,7 +29886,6 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutClassInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutClassInput
     attendances?: AttendanceCreateNestedManyWithoutClassInput
-    assessments?: AssessmentCreateNestedManyWithoutClassInput
     examClasses?: ExamClassCreateNestedManyWithoutClassInput
   }
 
@@ -34172,7 +29900,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutClassInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutClassInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutClassInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutClassInput
     examClasses?: ExamClassUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -34191,7 +29918,6 @@ export namespace Prisma {
     institution: InstitutionCreateNestedOneWithoutSubjectsInput
     teacherSubjectClasses?: TeacherSubjectClassCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceCreateNestedManyWithoutSubjectInput
   }
 
@@ -34205,7 +29931,6 @@ export namespace Prisma {
     institutionId: string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedCreateNestedManyWithoutSubjectInput
     examMarks?: ExamMarkUncheckedCreateNestedManyWithoutSubjectInput
-    assessments?: AssessmentUncheckedCreateNestedManyWithoutSubjectInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutSubjectInput
   }
 
@@ -34279,7 +30004,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
   }
@@ -34299,7 +30023,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
   }
@@ -34326,7 +30049,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutClassNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -34341,7 +30063,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutClassNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -34366,7 +30087,6 @@ export namespace Prisma {
     institution?: InstitutionUpdateOneRequiredWithoutSubjectsNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
   }
 
@@ -34380,7 +30100,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
@@ -34614,7 +30333,6 @@ export namespace Prisma {
     exams?: ExamUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutInstitutionNestedInput
@@ -34634,7 +30352,6 @@ export namespace Prisma {
     exams?: ExamUncheckedUpdateManyWithoutInstitutionNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutInstitutionNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutInstitutionNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutInstitutionNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutInstitutionNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutInstitutionNestedInput
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -34746,18 +30463,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type AssessmentCreateManyInstitutionInput = {
-    id?: string
-    classId: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type ResourceCreateManyInstitutionInput = {
     id?: string
     title: string
@@ -34850,7 +30555,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUpdateManyWithoutClassNestedInput
     resources?: ResourceUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUpdateManyWithoutClassNestedInput
   }
 
@@ -34865,7 +30569,6 @@ export namespace Prisma {
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutClassNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutClassNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutClassNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutClassNestedInput
     examClasses?: ExamClassUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -34887,7 +30590,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacherSubjectClasses?: TeacherSubjectClassUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUpdateManyWithoutSubjectNestedInput
   }
@@ -34901,7 +30603,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacherSubjectClasses?: TeacherSubjectClassUncheckedUpdateManyWithoutSubjectNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutSubjectNestedInput
-    assessments?: AssessmentUncheckedUpdateManyWithoutSubjectNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutSubjectNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutSubjectNestedInput
   }
@@ -34931,7 +30632,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutInstitutionInput = {
@@ -34950,7 +30650,6 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
     examMarks?: ExamMarkUncheckedUpdateManyWithoutStudentNestedInput
-    assessmentEntries?: AssessmentEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutInstitutionInput = {
@@ -35135,44 +30834,6 @@ export namespace Prisma {
     maxMarks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     recordedById?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AssessmentUpdateWithoutInstitutionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    class?: ClassUpdateOneRequiredWithoutAssessmentsNestedInput
-    subject?: SubjectUpdateOneRequiredWithoutAssessmentsNestedInput
-    entries?: AssessmentEntryUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateWithoutInstitutionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    entries?: AssessmentEntryUncheckedUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateManyWithoutInstitutionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -35382,18 +31043,6 @@ export namespace Prisma {
     institutionId: string
   }
 
-  export type AssessmentCreateManyClassInput = {
-    id?: string
-    subjectId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-  }
-
   export type ExamClassCreateManyClassInput = {
     id?: string
     examId: string
@@ -35547,44 +31196,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AssessmentUpdateWithoutClassInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutAssessmentsNestedInput
-    subject?: SubjectUpdateOneRequiredWithoutAssessmentsNestedInput
-    entries?: AssessmentEntryUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateWithoutClassInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    entries?: AssessmentEntryUncheckedUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateManyWithoutClassInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    subjectId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type ExamClassUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
     institution?: InstitutionUpdateOneRequiredWithoutExamClassesNestedInput
@@ -35623,18 +31234,6 @@ export namespace Prisma {
     maxMarks: Decimal | DecimalJsLike | number | string
     remarks?: string | null
     recordedById: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    institutionId: string
-  }
-
-  export type AssessmentCreateManySubjectInput = {
-    id?: string
-    classId: string
-    type: $Enums.AssessmentType
-    title: string
-    date: Date | string
-    totalMarks?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     institutionId: string
@@ -35738,44 +31337,6 @@ export namespace Prisma {
     maxMarks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     recordedById?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AssessmentUpdateWithoutSubjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institution?: InstitutionUpdateOneRequiredWithoutAssessmentsNestedInput
-    class?: ClassUpdateOneRequiredWithoutAssessmentsNestedInput
-    entries?: AssessmentEntryUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateWithoutSubjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    institutionId?: StringFieldUpdateOperationsInput | string
-    entries?: AssessmentEntryUncheckedUpdateManyWithoutAssessmentNestedInput
-  }
-
-  export type AssessmentUncheckedUpdateManyWithoutSubjectInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    type?: EnumAssessmentTypeFieldUpdateOperationsInput | $Enums.AssessmentType
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    totalMarks?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     institutionId?: StringFieldUpdateOperationsInput | string
@@ -35900,12 +31461,6 @@ export namespace Prisma {
     institutionId: string
   }
 
-  export type AssessmentEntryCreateManyStudentInput = {
-    id?: string
-    assessmentId: string
-    obtained?: number
-  }
-
   export type EnrollmentUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     rollNumber?: NullableIntFieldUpdateOperationsInput | number | null
@@ -36011,24 +31566,6 @@ export namespace Prisma {
     institutionId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AssessmentEntryUpdateWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-    assessment?: AssessmentUpdateOneRequiredWithoutEntriesNestedInput
-  }
-
-  export type AssessmentEntryUncheckedUpdateWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    assessmentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AssessmentEntryUncheckedUpdateManyWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    assessmentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-  }
-
   export type ExamMarkCreateManyExamInput = {
     id?: string
     studentId: string
@@ -36103,30 +31640,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     institutionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AssessmentEntryCreateManyAssessmentInput = {
-    id?: string
-    studentId: string
-    obtained?: number
-  }
-
-  export type AssessmentEntryUpdateWithoutAssessmentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-    student?: StudentUpdateOneRequiredWithoutAssessmentEntriesNestedInput
-  }
-
-  export type AssessmentEntryUncheckedUpdateWithoutAssessmentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    studentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AssessmentEntryUncheckedUpdateManyWithoutAssessmentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    studentId?: StringFieldUpdateOperationsInput | string
-    obtained?: IntFieldUpdateOperationsInput | number
   }
 
 

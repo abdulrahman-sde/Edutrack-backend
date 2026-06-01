@@ -351,37 +351,40 @@ async function main() {
   })();
 
   let attnCount = 0;
-  const statuses: ("PRESENT" | "ABSENT" | "LATE" | "LEAVE")[] = ["PRESENT","ABSENT","LATE","LEAVE"];
-
   for (let ci = 0; ci < classData.length; ci++) {
     const clsStudents = students.filter((_, i) => studentSeedData[i]!.classIdx === ci);
     const clsSubjects = [...new Set(tscAssignments.filter((a) => a.classIdx === ci).map((a) => a.subjectName))];
 
     for (const date of attnDates) {
+      const batch: {
+        studentId: string;
+        classId: string;
+        subjectId: string;
+        date: Date;
+        status: string;
+        recordedById: string;
+        institutionId: string;
+      }[] = [];
+
       for (const subjectName of clsSubjects) {
         for (const student of clsStudents) {
           const seed = studentSeedData[students.indexOf(student)]!;
           const roll = Math.random();
           const threshold = seed.punctuality * 0.85;
-
           const status = roll < threshold ? "PRESENT" : roll < threshold + 0.08 ? "ABSENT" : roll < threshold + 0.14 ? "LATE" : "LEAVE";
-
-          try {
-            await prisma.attendance.create({
-              data: {
-                studentId: student.id,
-                classId: classes[ci]!.id,
-                subjectId: subjMap[subjectName]!.id,
-                date,
-                status,
-                recordedById: adminUser.id,
-                institutionId: INSTITUTION_ID,
-              },
-            });
-            attnCount++;
-          } catch { /* skip duplicates */ }
+          batch.push({
+            studentId: student.id,
+            classId: classes[ci]!.id,
+            subjectId: subjMap[subjectName]!.id,
+            date,
+              status: status as any,
+              recordedById: adminUser.id,
+            institutionId: INSTITUTION_ID,
+          });
         }
       }
+      const result = await prisma.attendance.createMany({ data: batch, skipDuplicates: true });
+      attnCount += result.count;
     }
   }
   console.log(`9. ${attnCount} attendance records`);
@@ -449,6 +452,10 @@ async function main() {
     for (const ci of cfg.classIdxs) {
       const clsStudents = students.filter((_, i) => studentSeedData[i]!.classIdx === ci);
       const clsSubjects = [...new Set(tscAssignments.filter((a) => a.classIdx === ci).map((a) => a.subjectName))];
+      const batch: {
+        examId: string; studentId: string; subjectId: string;
+        marksObtained: number; maxMarks: number; recordedById: string; institutionId: string;
+      }[] = [];
 
       for (const subjectName of clsSubjects) {
         const subject = subjMap[subjectName];
@@ -461,23 +468,14 @@ async function main() {
           const jitter = (Math.random() - 0.5) * 2 * cfg.variance * 100;
           const pct = clamp(basePct + jitter, 15, 99);
           const obtained = Math.round((pct / 100) * maxMarks);
-
-          try {
-            await prisma.examMark.create({
-              data: {
-                examId: exam.id,
-                studentId: student.id,
-                subjectId: subject.id,
-                marksObtained: obtained,
-                maxMarks,
-                recordedById: adminUser.id,
-                institutionId: INSTITUTION_ID,
-              },
-            });
-            examMarksCount++;
-          } catch { /* skip duplicates */ }
+          batch.push({
+            examId: exam.id, studentId: student.id, subjectId: subject.id,
+            marksObtained: obtained, maxMarks, recordedById: adminUser.id, institutionId: INSTITUTION_ID,
+          });
         }
       }
+      const result = await prisma.examMark.createMany({ data: batch, skipDuplicates: true });
+      examMarksCount += result.count;
     }
     totalMarksCount += examMarksCount;
     console.log(`10${String(examConfigs.indexOf(cfg) + 1)}. "${cfg.title}" — ${examMarksCount} marks`);

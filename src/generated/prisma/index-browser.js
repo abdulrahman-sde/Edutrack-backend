@@ -255,26 +255,6 @@ exports.Prisma.ExamClassScalarFieldEnum = {
   institutionId: 'institutionId'
 };
 
-exports.Prisma.AssessmentScalarFieldEnum = {
-  id: 'id',
-  classId: 'classId',
-  subjectId: 'subjectId',
-  type: 'type',
-  title: 'title',
-  date: 'date',
-  totalMarks: 'totalMarks',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  institutionId: 'institutionId'
-};
-
-exports.Prisma.AssessmentEntryScalarFieldEnum = {
-  id: 'id',
-  assessmentId: 'assessmentId',
-  studentId: 'studentId',
-  obtained: 'obtained'
-};
-
 exports.Prisma.ExamMarkScalarFieldEnum = {
   id: 'id',
   examId: 'examId',
@@ -344,13 +324,6 @@ exports.ExamTerm = exports.$Enums.ExamTerm = {
   FINAL: 'FINAL'
 };
 
-exports.AssessmentType = exports.$Enums.AssessmentType = {
-  QUIZ: 'QUIZ',
-  ASSIGNMENT: 'ASSIGNMENT',
-  MIDTERM: 'MIDTERM',
-  FINAL: 'FINAL'
-};
-
 exports.ResourceType = exports.$Enums.ResourceType = {
   ASSIGNMENT: 'ASSIGNMENT',
   STUDY_MATERIAL: 'STUDY_MATERIAL',
@@ -370,8 +343,6 @@ exports.Prisma.ModelName = {
   Attendance: 'Attendance',
   Exam: 'Exam',
   ExamClass: 'ExamClass',
-  Assessment: 'Assessment',
-  AssessmentEntry: 'AssessmentEntry',
   ExamMark: 'ExamMark',
   Resource: 'Resource'
 };

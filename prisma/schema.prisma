@@ -32,12 +32,6 @@ enum ExamTerm {
     FINAL
 }
 
-enum AssessmentType {
-    QUIZ
-    ASSIGNMENT
-    MIDTERM
-    FINAL
-}
 
 enum ResourceType {
     ASSIGNMENT
@@ -104,7 +98,6 @@ model Institution {
     exams                 Exam[]
     examClasses           ExamClass[]
     examMarks             ExamMark[]
-    assessments           Assessment[]
     resources             Resource[]
     enrollments           Enrollment[]
     teacherSubjectClasses TeacherSubjectClass[]
@@ -148,7 +141,6 @@ model Class {
     teacherSubjectClasses TeacherSubjectClass[]
     attendances           Attendance[]
     resources             Resource[]
-    assessments           Assessment[]
     examClasses           ExamClass[]
 
     @@unique([name, section])
@@ -168,7 +160,6 @@ model Subject {
 
     teacherSubjectClasses TeacherSubjectClass[]
     examMarks             ExamMark[]
-    assessments           Assessment[]
     attendances           Attendance[]
     resources             Resource[]
 
@@ -220,7 +211,6 @@ model Student {
     enrollments Enrollment[]
     attendances      Attendance[]
     examMarks        ExamMark[]
-    assessmentEntries AssessmentEntry[]
 
     @@map("students")
 }
@@ -303,40 +293,6 @@ model ExamClass {
     @@map("exam_classes")
 }
 
-model Assessment {
-    id         String   @id @default(uuid()) @db.Uuid
-    classId    String   @db.Uuid
-    subjectId  String   @db.Uuid
-    type       AssessmentType
-    title      String
-    date       DateTime @db.Date
-    totalMarks Int      @default(100)
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
-
-    institutionId String      @db.Uuid
-    institution   Institution @relation(fields: [institutionId], references: [id])
-
-    class   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
-    subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-    entries AssessmentEntry[]
-
-    @@index([classId, subjectId])
-    @@map("assessments")
-}
-
-model AssessmentEntry {
-    id           String @id @default(uuid()) @db.Uuid
-    assessmentId String @db.Uuid
-    studentId    String @db.Uuid
-    obtained     Int    @default(0)
-
-    assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
-    student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
-
-    @@unique([assessmentId, studentId])
-    @@map("assessment_entries")
-}
 
 model ExamMark {
     id            String   @id @default(uuid()) @db.Uuid
