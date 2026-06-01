@@ -90,6 +90,19 @@ export async function updateExam(
   });
 }
 
+export async function findExamsByClassIds(classIds: string[], institutionId: string) {
+  return prisma.exam.findMany({
+    where: {
+      institutionId,
+      examClasses: {
+        some: { classId: { in: classIds } },
+      },
+    },
+    include: examInclude,
+    orderBy: { startDate: "desc" },
+  });
+}
+
 export async function deleteExam(id: string) {
   return prisma.exam.delete({ where: { id } });
 }

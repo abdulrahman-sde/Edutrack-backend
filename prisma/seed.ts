@@ -142,6 +142,9 @@ async function main() {
     { email: "teacher4@edutrack.pk", empId: "T-004", firstName: "Ayesha", lastName: "Ahmed", qual: "M.Sc Biology", phone: "0301-4444444" },
     { email: "teacher5@edutrack.pk", empId: "T-005", firstName: "Sana", lastName: "Malik", qual: "MA English", phone: "0301-5555555" },
     { email: "teacher6@edutrack.pk", empId: "T-006", firstName: "Zaid", lastName: "Hassan", qual: "MA Urdu", phone: "0301-6666666" },
+    { email: "teacher7@edutrack.pk", empId: "T-007", firstName: "Hina", lastName: "Riaz", qual: "M.Sc Computer Science", phone: "0301-7777777" },
+    { email: "teacher8@edutrack.pk", empId: "T-008", firstName: "Kashif", lastName: "Malik", qual: "MA Islamiyat", phone: "0301-8888888" },
+    { email: "teacher9@edutrack.pk", empId: "T-009", firstName: "Nadia", lastName: "Jamil", qual: "MA Pakistan Studies", phone: "0301-9999999" },
   ];
 
   const teachers = await Promise.all(
@@ -178,64 +181,85 @@ async function main() {
     classIdx: number;
     subjectName: string;
   }[] = [
+    // Grade 6-A
     { teacherIdx: 0, classIdx: 0, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 0, subjectName: "Physics" },
     { teacherIdx: 2, classIdx: 0, subjectName: "Chemistry" },
+    { teacherIdx: 3, classIdx: 0, subjectName: "Biology" },
     { teacherIdx: 4, classIdx: 0, subjectName: "English" },
     { teacherIdx: 5, classIdx: 0, subjectName: "Urdu" },
-    { teacherIdx: 3, classIdx: 0, subjectName: "Biology" },
+    { teacherIdx: 7, classIdx: 0, subjectName: "Islamiyat" },
+    // Grade 6-B
     { teacherIdx: 0, classIdx: 1, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 1, subjectName: "Physics" },
     { teacherIdx: 4, classIdx: 1, subjectName: "English" },
     { teacherIdx: 5, classIdx: 1, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 1, subjectName: "Islamiyat" },
+    // Grade 7-A
     { teacherIdx: 0, classIdx: 2, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 2, subjectName: "Physics" },
     { teacherIdx: 2, classIdx: 2, subjectName: "Chemistry" },
+    { teacherIdx: 3, classIdx: 2, subjectName: "Biology" },
     { teacherIdx: 4, classIdx: 2, subjectName: "English" },
     { teacherIdx: 5, classIdx: 2, subjectName: "Urdu" },
-    { teacherIdx: 3, classIdx: 2, subjectName: "Biology" },
+    { teacherIdx: 7, classIdx: 2, subjectName: "Islamiyat" },
+    // Grade 7-B
     { teacherIdx: 0, classIdx: 3, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 3, subjectName: "Physics" },
     { teacherIdx: 4, classIdx: 3, subjectName: "English" },
     { teacherIdx: 5, classIdx: 3, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 3, subjectName: "Islamiyat" },
+    // Grade 8-A
     { teacherIdx: 0, classIdx: 4, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 4, subjectName: "Physics" },
     { teacherIdx: 2, classIdx: 4, subjectName: "Chemistry" },
     { teacherIdx: 3, classIdx: 4, subjectName: "Biology" },
     { teacherIdx: 4, classIdx: 4, subjectName: "English" },
     { teacherIdx: 5, classIdx: 4, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 4, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 4, subjectName: "Computer Science" },
+    // Grade 8-B
     { teacherIdx: 0, classIdx: 5, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 5, subjectName: "Physics" },
     { teacherIdx: 4, classIdx: 5, subjectName: "English" },
     { teacherIdx: 5, classIdx: 5, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 5, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 5, subjectName: "Computer Science" },
+    // Grade 9-A
     { teacherIdx: 0, classIdx: 6, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 6, subjectName: "Physics" },
     { teacherIdx: 2, classIdx: 6, subjectName: "Chemistry" },
     { teacherIdx: 3, classIdx: 6, subjectName: "Biology" },
     { teacherIdx: 4, classIdx: 6, subjectName: "English" },
     { teacherIdx: 5, classIdx: 6, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 6, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 6, subjectName: "Computer Science" },
+    { teacherIdx: 8, classIdx: 6, subjectName: "Pakistan Studies" },
+    // Grade 9-B
     { teacherIdx: 0, classIdx: 7, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 7, subjectName: "Physics" },
     { teacherIdx: 4, classIdx: 7, subjectName: "English" },
     { teacherIdx: 5, classIdx: 7, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 7, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 7, subjectName: "Computer Science" },
+    // Grade 10-A
     { teacherIdx: 0, classIdx: 8, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 8, subjectName: "Physics" },
     { teacherIdx: 2, classIdx: 8, subjectName: "Chemistry" },
     { teacherIdx: 3, classIdx: 8, subjectName: "Biology" },
     { teacherIdx: 4, classIdx: 8, subjectName: "English" },
     { teacherIdx: 5, classIdx: 8, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 8, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 8, subjectName: "Computer Science" },
+    { teacherIdx: 8, classIdx: 8, subjectName: "Pakistan Studies" },
+    // Grade 10-B
     { teacherIdx: 0, classIdx: 9, subjectName: "Mathematics" },
     { teacherIdx: 1, classIdx: 9, subjectName: "Physics" },
     { teacherIdx: 4, classIdx: 9, subjectName: "English" },
     { teacherIdx: 5, classIdx: 9, subjectName: "Urdu" },
+    { teacherIdx: 7, classIdx: 9, subjectName: "Islamiyat" },
+    { teacherIdx: 6, classIdx: 9, subjectName: "Computer Science" },
   ];
-
-  // Group by class to assign sequential schedule slots
-  const perClass: Record<number, typeof tscAssignments> = {};
-  for (const a of tscAssignments) {
-    if (!perClass[a.classIdx]) perClass[a.classIdx] = [];
-    perClass[a.classIdx]!.push(a);
-  }
 
   let tscCount = 0;
   for (const a of tscAssignments) {
@@ -243,7 +267,8 @@ async function main() {
     const classId = classes[a.classIdx]!.id;
     const subjectId = subjMap[a.subjectName]!.id;
 
-    const subjIdx = perClass[a.classIdx]!.indexOf(a);
+    const perClass = tscAssignments.filter((x) => x.classIdx === a.classIdx);
+    const subjIdx = perClass.indexOf(a);
     const { dayOfWeek, startTime, endTime } = scheduleForSubjInClass(subjIdx, a.classIdx);
 
     await prisma.teacherSubjectClass.create({
@@ -262,58 +287,61 @@ async function main() {
   console.log(`✓ ${tscCount} TSC assignments (with schedule)`);
 
   // ──────────────────────────────────────────────
-  // 7. Students
+  // 7. Students (8-10 per class)
   // ──────────────────────────────────────────────
-  const studentData = [
-    { adm: "GR6A-001", first: "Abdullah", last: "Khan", gender: "MALE" as const, guardian: "Tariq Khan", phone: "0310-1000001", classIdx: 0 },
-    { adm: "GR6A-002", first: "Hafsa", last: "Ahmed", gender: "FEMALE" as const, guardian: "Naveed Ahmed", phone: "0310-1000002", classIdx: 0 },
-    { adm: "GR6A-003", first: "Bilal", last: "Hussain", gender: "MALE" as const, guardian: "Rashid Hussain", phone: "0310-1000003", classIdx: 0 },
-    { adm: "GR6A-004", first: "Ayesha", last: "Iqbal", gender: "FEMALE" as const, guardian: "M. Iqbal", phone: "0310-1000004", classIdx: 0 },
-    { adm: "GR6A-005", first: "Usman", last: "Ali", gender: "MALE" as const, guardian: "Ali Ahmed", phone: "0310-1000005", classIdx: 0 },
-    { adm: "GR6B-001", first: "Zainab", last: "Fatima", gender: "FEMALE" as const, guardian: "Hassan Ali", phone: "0310-2000001", classIdx: 1 },
-    { adm: "GR6B-002", first: "Hamza", last: "Malik", gender: "MALE" as const, guardian: "Imran Malik", phone: "0310-2000002", classIdx: 1 },
-    { adm: "GR6B-003", first: "Maryam", last: "Shah", gender: "FEMALE" as const, guardian: "Shahid Shah", phone: "0310-2000003", classIdx: 1 },
-    { adm: "GR6B-004", first: "Omar", last: "Farooq", gender: "MALE" as const, guardian: "Farooq Ahmed", phone: "0310-2000004", classIdx: 1 },
-    { adm: "GR7A-001", first: "Hassan", last: "Raza", gender: "MALE" as const, guardian: "Raza Ali", phone: "0310-3000001", classIdx: 2 },
-    { adm: "GR7A-002", first: "Fatima", last: "Zahra", gender: "FEMALE" as const, guardian: "Jafar Rizvi", phone: "0310-3000002", classIdx: 2 },
-    { adm: "GR7A-003", first: "Ali", last: "Rizvi", gender: "MALE" as const, guardian: "Hasan Rizvi", phone: "0310-3000003", classIdx: 2 },
-    { adm: "GR7A-004", first: "Sara", last: "Khan", gender: "FEMALE" as const, guardian: "Akram Khan", phone: "0310-3000004", classIdx: 2 },
-    { adm: "GR7A-005", first: "Husnain", last: "Ali", gender: "MALE" as const, guardian: "Ali Raza", phone: "0310-3000005", classIdx: 2 },
-    { adm: "GR7B-001", first: "Noor", last: "Fatima", gender: "FEMALE" as const, guardian: "Khalid Ahmed", phone: "0310-4000001", classIdx: 3 },
-    { adm: "GR7B-002", first: "Rayan", last: "Ahmed", gender: "MALE" as const, guardian: "Ahmed Khan", phone: "0310-4000002", classIdx: 3 },
-    { adm: "GR7B-003", first: "Eman", last: "Ali", gender: "FEMALE" as const, guardian: "Tahir Ali", phone: "0310-4000003", classIdx: 3 },
-    { adm: "GR8A-001", first: "Ahmad", last: "Nawaz", gender: "MALE" as const, guardian: "Nawaz Sharif", phone: "0310-5000001", classIdx: 4 },
-    { adm: "GR8A-002", first: "Komal", last: "Rizwan", gender: "FEMALE" as const, guardian: "Rizwan Ahmed", phone: "0310-5000002", classIdx: 4 },
-    { adm: "GR8A-003", first: "Saad", last: "Yousaf", gender: "MALE" as const, guardian: "Yousaf Ali", phone: "0310-5000003", classIdx: 4 },
-    { adm: "GR8A-004", first: "Hira", last: "Manzoor", gender: "FEMALE" as const, guardian: "Manzoor Hussain", phone: "0310-5000004", classIdx: 4 },
-    { adm: "GR8B-001", first: "Taha", last: "Siddiqui", gender: "MALE" as const, guardian: "Siddiqui Ahmed", phone: "0310-6000001", classIdx: 5 },
-    { adm: "GR8B-002", first: "Laiba", last: "Mustafa", gender: "FEMALE" as const, guardian: "Mustafa Kamal", phone: "0310-6000002", classIdx: 5 },
-    { adm: "GR9A-001", first: "Shahzaib", last: "Khan", gender: "MALE" as const, guardian: "Javed Khan", phone: "0310-7000001", classIdx: 6 },
-    { adm: "GR9A-002", first: "Manahil", last: "Qureshi", gender: "FEMALE" as const, guardian: "Qureshi Sahab", phone: "0310-7000002", classIdx: 6 },
-    { adm: "GR9A-003", first: "Farhan", last: "Akhtar", gender: "MALE" as const, guardian: "Akhtar Ali", phone: "0310-7000003", classIdx: 6 },
-    { adm: "GR9A-004", first: "Sania", last: "Mirza", gender: "FEMALE" as const, guardian: "Mirza Ahmed", phone: "0310-7000004", classIdx: 6 },
-    { adm: "GR9B-001", first: "Danish", last: "Iqbal", gender: "MALE" as const, guardian: "Iqbal Ahmed", phone: "0310-8000001", classIdx: 7 },
-    { adm: "GR9B-002", first: "Alina", last: "Hassan", gender: "FEMALE" as const, guardian: "Hassan Ali", phone: "0310-8000002", classIdx: 7 },
-    { adm: "GR10A-001", first: "Talha", last: "Anjum", gender: "MALE" as const, guardian: "Anjum Latif", phone: "0310-9000001", classIdx: 8 },
-    { adm: "GR10A-002", first: "Mahnoor", last: "Siddiqui", gender: "FEMALE" as const, guardian: "Siddiqui Sb", phone: "0310-9000002", classIdx: 8 },
-    { adm: "GR10A-003", first: "Abdul", last: "Rauf", gender: "MALE" as const, guardian: "Rauf Ahmed", phone: "0310-9000003", classIdx: 8 },
-    { adm: "GR10A-004", first: "Iqra", last: "Aziz", gender: "FEMALE" as const, guardian: "Aziz Ahmed", phone: "0310-9000004", classIdx: 8 },
-    { adm: "GR10B-001", first: "Rohaan", last: "Ali", gender: "MALE" as const, guardian: "Ali Khan", phone: "0310-0000001", classIdx: 9 },
-    { adm: "GR10B-002", first: "Areeba", last: "Shahid", gender: "FEMALE" as const, guardian: "Shahid Iqbal", phone: "0310-0000002", classIdx: 9 },
-  ];
+  const firstNames = {
+    male: ["Abdullah", "Bilal", "Usman", "Hamza", "Hassan", "Ali", "Husnain", "Rayan", "Ahmad", "Saad", "Taha", "Shahzaib", "Farhan", "Danish", "Talha", "Abdul", "Rohaan", "Omar", "Zaid", "Ibrahim"],
+    female: ["Hafsa", "Ayesha", "Zainab", "Maryam", "Fatima", "Sara", "Noor", "Eman", "Komal", "Hira", "Laiba", "Manahil", "Sania", "Alina", "Mahnoor", "Iqra", "Areeba", "Sana", "Mariam", "Sabeen"],
+  };
+  const lastNames = ["Khan", "Ahmed", "Ali", "Hussain", "Iqbal", "Malik", "Shah", "Raza", "Rizvi", "Siddiqui", "Qureshi", "Hassan", "Farooq", "Akhtar", "Nawaz", "Yousaf", "Anjum", "Aziz", "Shaikh", "Hashmi"];
+
+  const studentData: {
+    adm: string;
+    first: string;
+    last: string;
+    gender: "MALE" | "FEMALE";
+    guardian: string;
+    phone: string;
+    classIdx: number;
+  }[] = [];
+
+  let studentCounter = 0;
+  for (let ci = 0; ci < classData.length; ci++) {
+    const classLabel = classData[ci]!.name.replace("Grade ", "GR") + classData[ci]!.section;
+    const count = ci === 0 || ci === 6 || ci === 8 ? 10 : 8;
+
+    for (let si = 0; si < count; si++) {
+      studentCounter++;
+      const isMale = studentCounter % 3 !== 0;
+      const namePool = isMale ? firstNames.male : firstNames.female;
+      const first = namePool[studentCounter % namePool.length]!;
+      const last = lastNames[studentCounter % lastNames.length]!;
+      const gender = isMale ? "MALE" as const : "FEMALE" as const;
+
+      studentData.push({
+        adm: `${classLabel}-${String(si + 1).padStart(3, "0")}`,
+        first,
+        last,
+        gender,
+        guardian: `${last} Sb`,
+        phone: `0310-${String(1000000 + studentCounter).slice(1)}`,
+        classIdx: ci,
+      });
+    }
+  }
 
   const students = await Promise.all(
-    studentData.map((s, i) =>
+    studentData.map((s) =>
       prisma.student.create({
         data: {
           admissionNumber: s.adm,
           firstName: s.first,
           lastName: s.last,
-          dob: new Date(`2010-${String((i % 12) + 1).padStart(2, "0")}-15`),
+          dob: new Date(`2010-${String((studentData.indexOf(s) % 12) + 1).padStart(2, "0")}-15`),
           gender: s.gender,
           guardianName: s.guardian,
           guardianPhone: s.phone,
-          address: `${i + 1}, Street ${i + 1}, Gulistan-e-Jauhar, Karachi`,
+          address: `House #${studentData.indexOf(s) + 1}, Street ${(studentData.indexOf(s) % 20) + 1}, Gulistan-e-Jauhar, Karachi`,
           institutionId: INSTITUTION_ID,
         },
       }),
@@ -331,7 +359,7 @@ async function main() {
       data: {
         studentId: students[i]!.id,
         classId,
-        rollNumber: i + 1,
+        rollNumber: (i % 40) + 1,
         status: "ACTIVE",
         institutionId: INSTITUTION_ID,
       },
@@ -341,32 +369,40 @@ async function main() {
   console.log(`✓ ${enrollmentCount} enrollments`);
 
   // ──────────────────────────────────────────────
-  // 9. Attendance
+  // 9. Attendance (Grade 9-A & 10-A, last 10 weekdays)
   // ──────────────────────────────────────────────
   const attendanceClasses = [classes[6]!, classes[8]!];
-  const attendanceSubjects = ["Mathematics", "Physics", "English", "Urdu"];
 
-  const today = new Date();
   const pastDates: Date[] = [];
-  for (let d = 5; d >= 1; d--) {
+  const today = new Date();
+  let daysBack = 0;
+  while (pastDates.length < 10) {
+    daysBack++;
     const date = new Date(today);
-    date.setDate(date.getDate() - d);
+    date.setDate(date.getDate() - daysBack);
     if (date.getDay() !== 5 && date.getDay() !== 6) {
       pastDates.push(date);
     }
   }
 
+  const attendanceSubjectNames = ["Mathematics", "Physics", "Chemistry", "Biology", "English", "Urdu", "Islamiyat", "Computer Science", "Pakistan Studies"];
+
   let attendanceCount = 0;
   for (const cls of attendanceClasses) {
-    const classStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
+    const clsStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
+    const clsSubjects = tscAssignments
+      .filter((a) => classes.indexOf(cls) === a.classIdx)
+      .map((a) => a.subjectName)
+      .filter((v, i, a) => a.indexOf(v) === i);
+
     for (const date of pastDates) {
-      for (const subjectName of attendanceSubjects) {
-        for (const student of classStudents) {
+      for (const subjectName of clsSubjects) {
+        for (const student of clsStudents) {
           const statusRoll = Math.random();
           const status =
-            statusRoll < 0.75 ? "PRESENT"
-            : statusRoll < 0.88 ? "ABSENT"
-            : statusRoll < 0.95 ? "LATE"
+            statusRoll < 0.72 ? "PRESENT"
+            : statusRoll < 0.85 ? "ABSENT"
+            : statusRoll < 0.94 ? "LATE"
             : "LEAVE";
 
           try {
@@ -392,169 +428,106 @@ async function main() {
   console.log(`✓ ${attendanceCount} attendance records`);
 
   // ──────────────────────────────────────────────
-  // 10. Exams & Marks
+  // 10. Exams (one per term)
   // ──────────────────────────────────────────────
-  const exam = await prisma.exam.create({
-    data: {
-      title: "Midterm 2026",
-      term: "MIDTERM",
-      startDate: new Date("2026-03-01"),
-      endDate: new Date("2026-03-15"),
-      institutionId: INSTITUTION_ID,
-      examClasses: {
-        create: [classes[6]!, classes[8]!].map((c) => ({
-          classId: c.id,
-          institutionId: INSTITUTION_ID,
-        })),
-      },
+  const examConfigs = [
+    {
+      title: "Monthly Test — March 2026",
+      term: "MONTHLY" as const,
+      start: new Date("2026-03-20"),
+      end: new Date("2026-03-21"),
+      classIdxs: [0, 2, 4],
+      markRange: [20, 80],
+      maxMarksBySubj: () => 100,
     },
-  });
+    {
+      title: "Midterm Examinations 2026",
+      term: "MIDTERM" as const,
+      start: new Date("2026-05-01"),
+      end: new Date("2026-05-15"),
+      classIdxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      markRange: [30, 95],
+      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+    },
+    {
+      title: "Pre-Board Examinations 2026",
+      term: "PRE_BOARD" as const,
+      start: new Date("2026-08-01"),
+      end: new Date("2026-08-15"),
+      classIdxs: [6, 7, 8, 9],
+      markRange: [35, 98],
+      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+    },
+    {
+      title: "Final Examinations 2026",
+      term: "FINAL" as const,
+      start: new Date("2026-11-01"),
+      end: new Date("2026-11-20"),
+      classIdxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      markRange: [25, 99],
+      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+    },
+  ];
 
-  const examClasses = [classes[6]!, classes[8]!];
-  const examSubjects = ["Mathematics", "Physics", "Chemistry", "Biology", "English", "Urdu", "Pakistan Studies", "Islamiyat"];
+  let totalMarksCount = 0;
 
-  let marksCount = 0;
-  for (const cls of examClasses) {
-    const classStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
-    for (const subjectName of examSubjects) {
-      const subject = subjMap[subjectName];
-      if (!subject) continue;
-      const maxMarks = subjectName === "Mathematics" || subjectName === "English" ? 100 : 75;
+  for (const cfg of examConfigs) {
+    const exam = await prisma.exam.create({
+      data: {
+        title: cfg.title,
+        term: cfg.term,
+        startDate: cfg.start,
+        endDate: cfg.end,
+        institutionId: INSTITUTION_ID,
+        examClasses: {
+          create: cfg.classIdxs.map((ci) => ({
+            classId: classes[ci]!.id,
+            institutionId: INSTITUTION_ID,
+          })),
+        },
+      },
+    });
 
-      for (const student of classStudents) {
-        const obtained = Math.floor(Math.random() * (maxMarks * 0.5) + maxMarks * 0.35);
-        try {
-          await prisma.examMark.create({
-            data: {
-              examId: exam.id,
-              studentId: student.id,
-              subjectId: subject.id,
-              marksObtained: obtained,
-              maxMarks,
-              recordedById: adminUser.id,
-              institutionId: INSTITUTION_ID,
-            },
-          });
-          marksCount++;
-        } catch {
-          // skip
+    let examMarksCount = 0;
+    for (const ci of cfg.classIdxs) {
+      const clsStudents = students.filter((_, idx) => studentData[idx]!.classIdx === ci);
+      const clsSubjects = tscAssignments
+        .filter((a) => a.classIdx === ci)
+        .map((a) => a.subjectName)
+        .filter((v, i, a) => a.indexOf(v) === i);
+
+      for (const subjectName of clsSubjects) {
+        const subject = subjMap[subjectName];
+        if (!subject) continue;
+        const maxMarks = cfg.maxMarksBySubj(subjectName);
+
+        for (const student of clsStudents) {
+          const obtained = Math.floor(Math.random() * (cfg.markRange[1] - cfg.markRange[0]) + cfg.markRange[0]);
+          try {
+            await prisma.examMark.create({
+              data: {
+                examId: exam.id,
+                studentId: student.id,
+                subjectId: subject.id,
+                marksObtained: Math.min(obtained, maxMarks),
+                maxMarks,
+                recordedById: adminUser.id,
+                institutionId: INSTITUTION_ID,
+              },
+            });
+            examMarksCount++;
+          } catch {
+            // skip duplicates
+          }
         }
       }
     }
+
+    totalMarksCount += examMarksCount;
+    console.log(`✓ "${cfg.title}" — ${examMarksCount} marks`);
   }
-  console.log(`✓ ${marksCount} exam marks`);
 
-  // Additional exam — Monthly Test
-  const monthlyExam = await prisma.exam.create({
-    data: {
-      title: "Monthly Test — April 2026",
-      term: "MONTHLY",
-      startDate: new Date("2026-04-15"),
-      endDate: new Date("2026-04-16"),
-      institutionId: INSTITUTION_ID,
-      examClasses: {
-        create: [classes[0]!, classes[2]!, classes[4]!].map((c) => ({
-          classId: c.id,
-          institutionId: INSTITUTION_ID,
-        })),
-      },
-    },
-  });
-
-  let monthlyMarks = 0;
-  for (const cls of [classes[0]!, classes[2]!, classes[4]!]) {
-    const classStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
-    for (const student of classStudents) {
-      const obtained = Math.floor(Math.random() * 61 + 20);
-      try {
-        await prisma.examMark.create({
-          data: {
-            examId: monthlyExam.id,
-            studentId: student.id,
-            subjectId: subjMap["Mathematics"]!.id,
-            marksObtained: obtained,
-            maxMarks: 100,
-            recordedById: adminUser.id,
-            institutionId: INSTITUTION_ID,
-          },
-        });
-        monthlyMarks++;
-      } catch { /* skip */ }
-    }
-  }
-  console.log(`✓ ${monthlyMarks} monthly exam marks`);
-
-  // ──────────────────────────────────────────────
-  // 11a. Assessments (teacher-level quizzes & assignments)
-  // ──────────────────────────────────────────────
-  const assessmentClasses = [classes[0]!, classes[6]!, classes[8]!];
-  const assessmentSubjects = ["Mathematics", "English", "Urdu"];
-  let assessmentCount = 0;
-  let entryCount = 0;
-
-  for (const cls of assessmentClasses) {
-    const classStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
-
-    for (const subjectName of assessmentSubjects) {
-      const subject = subjMap[subjectName];
-      if (!subject) continue;
-
-      const quiz = await prisma.assessment.create({
-        data: {
-          classId: cls.id,
-          subjectId: subject.id,
-          type: "QUIZ",
-          title: `${subjectName} Quiz — Week 1`,
-          totalMarks: 20,
-          date: new Date("2026-05-04"),
-          institutionId: INSTITUTION_ID,
-        },
-      });
-      assessmentCount++;
-
-      for (const student of classStudents) {
-        const obtained = Math.floor(Math.random() * 11 + 5);
-        try {
-          await prisma.assessmentEntry.create({
-            data: {
-              assessmentId: quiz.id,
-              studentId: student.id,
-              obtained: Math.min(obtained, 20),
-            },
-          });
-          entryCount++;
-        } catch { /* skip */ }
-      }
-
-      const assignment = await prisma.assessment.create({
-        data: {
-          classId: cls.id,
-          subjectId: subject.id,
-          type: "ASSIGNMENT",
-          title: `${subjectName} Assignment — Algebra`,
-          totalMarks: 50,
-          date: new Date("2026-05-11"),
-          institutionId: INSTITUTION_ID,
-        },
-      });
-      assessmentCount++;
-
-      for (const student of classStudents) {
-        const obtained = Math.floor(Math.random() * 21 + 15);
-        try {
-          await prisma.assessmentEntry.create({
-            data: {
-              assessmentId: assignment.id,
-              studentId: student.id,
-              obtained: Math.min(obtained, 50),
-            },
-          });
-          entryCount++;
-        } catch { /* skip */ }
-      }
-    }
-  }
-  console.log(`✓ ${assessmentCount} assessments, ${entryCount} entries`);
+  console.log(`✓ ${totalMarksCount} total exam marks`);
 
   // ──────────────────────────────────────────────
   // 11. Resources
@@ -568,6 +541,8 @@ async function main() {
     { title: "Urdu Grammar Exercises", type: "ASSIGNMENT" as const, classIdx: 6, subjectName: "Urdu", url: "https://res.cloudinary.com/demo/assignments/urdu-grammar.pdf" },
     { title: "Syllabus Breakdown 2026", type: "SYLLABUS" as const, classIdx: 6, subjectName: "Mathematics", url: "https://res.cloudinary.com/demo/syllabus/math-2026.pdf" },
     { title: "Biology - Cell Structure", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Biology", url: "https://res.cloudinary.com/demo/materials/cell-structure.pdf" },
+    { title: "Computer - Programming Basics", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Computer Science", url: "https://res.cloudinary.com/demo/materials/programming.pdf" },
+    { title: "Pakistan Studies - Chapter 1", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Pakistan Studies", url: "https://res.cloudinary.com/demo/materials/pak-studies-ch1.pdf" },
   ];
 
   for (const r of resourceData) {
@@ -595,6 +570,9 @@ async function main() {
   console.log("  T-004:  teacher4@edutrack.pk / password123");
   console.log("  T-005:  teacher5@edutrack.pk / password123");
   console.log("  T-006:  teacher6@edutrack.pk / password123");
+  console.log("  T-007:  teacher7@edutrack.pk / password123");
+  console.log("  T-008:  teacher8@edutrack.pk / password123");
+  console.log("  T-009:  teacher9@edutrack.pk / password123");
 }
 
 main()

@@ -1,7 +1,10 @@
 import { NotFoundError } from "../../shared/errors/http-error.js";
+import { prisma } from "../../lib/prisma.js";
+import { findTeacherProfileByUserId } from "../classes/classes.repository.js";
 import {
   findAllExams,
   findExamById,
+  findExamsByClassIds,
   createExam,
   updateExam,
   deleteExam,
@@ -91,6 +94,22 @@ export async function updateExamRecord(id: string, input: UpdateExamInput, insti
   );
 
   return toResponse(exam);
+}
+
+export async function listTeacherExams(userId: string, institutionId: string) {
+  const profile = await findTeacherProfileByUserId(userId);
+  if (!profile) throw new NotFoundError("Teacher profile not found");
+
+  const tscs = await prisma.teacherSubjectClass.findMany({
+    where: { teacherId: profile.id },
+    select: { classId: true },
+    distinct: ["classId"],
+  });
+
+  const classIdList = tscs.map((t) => t.classId);
+  if (classIdList.length === 0) return [];
+  const exams = await findExamsByClassIds(classIdList, institutionId);
+  return exams.map(toResponse);
 }
 
 export async function deleteExamRecord(id: string) {

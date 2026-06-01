@@ -16,6 +16,9 @@ export const updateTeacherSchema = z.object({
   phone: z.string().nullable().optional(),
   subjects: z.array(z.string()).optional(),
   classIds: z.array(z.string()).optional(),
+  classSubjects: z
+    .array(z.object({ classId: z.string(), subjects: z.array(z.string()) }))
+    .optional(),
 });
 
 export type UpdateTeacherInput = z.infer<typeof updateTeacherSchema>;

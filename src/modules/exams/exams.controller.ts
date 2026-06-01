@@ -6,6 +6,7 @@ import {
   createExamRecord,
   updateExamRecord,
   deleteExamRecord,
+  listTeacherExams,
 } from "./exams.service.js";
 import { ok, created, noContent } from "../../shared/response/index.js";
 import { ValidationError } from "../../shared/errors/http-error.js";
@@ -36,6 +37,11 @@ export async function updateExamController(req: Request, res: Response) {
   }
   const exam = await updateExamRecord(req.params.id as string, parsed.data, req.user!.institutionId);
   ok(res, exam, "Exam updated successfully");
+}
+
+export async function listTeacherExamsController(req: Request, res: Response) {
+  const exams = await listTeacherExams(req.user!.sub, req.user!.institutionId);
+  ok(res, exams);
 }
 
 export async function deleteExamController(req: Request, res: Response) {

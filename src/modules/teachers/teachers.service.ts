@@ -58,7 +58,7 @@ export async function updateTeacher(id: string, input: UpdateTeacherInput, insti
   const existing = await findTeacherById(id);
   if (!existing || !existing.teacherProfile) throw new NotFoundError("Teacher not found");
 
-  const { subjects, classIds, name, ...rest } = input;
+  const { subjects, classIds, classSubjects, name, ...rest } = input;
 
   if (name || rest.phone !== undefined) {
     const nameParts = name ? name.split(" ") : [];
@@ -71,13 +71,13 @@ export async function updateTeacher(id: string, input: UpdateTeacherInput, insti
     });
   }
 
-  if (subjects && classIds && subjects.length > 0 && classIds.length > 0) {
+  if (classSubjects && classSubjects.length > 0) {
     const assignments: { classId: string; subjectId: string }[] = [];
 
-    for (const subjectName of subjects) {
-      const subject = await upsertSubjectByName(subjectName, institutionId);
-      for (const classId of classIds) {
-        assignments.push({ classId, subjectId: subject.id });
+    for (const cs of classSubjects) {
+      for (const subjectName of cs.subjects) {
+        const subject = await upsertSubjectByName(subjectName, institutionId);
+        assignments.push({ classId: cs.classId, subjectId: subject.id });
       }
     }
 
