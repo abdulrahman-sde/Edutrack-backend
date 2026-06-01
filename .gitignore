@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.next/
+.env
+.env.local
+*.tsbuildinfo
+src/generated/
+.DS_Store

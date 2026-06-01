@@ -1,0 +1,390 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum Role {
+    ADMIN
+    TEACHER
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}
+
+enum AttendanceStatus {
+    PRESENT
+    ABSENT
+    LATE
+    LEAVE
+}
+
+enum ExamTerm {
+    MONTHLY
+    MIDTERM
+    PRE_BOARD
+    FINAL
+}
+
+enum AssessmentType {
+    QUIZ
+    ASSIGNMENT
+    MIDTERM
+    FINAL
+}
+
+enum ResourceType {
+    ASSIGNMENT
+    STUDY_MATERIAL
+    SYLLABUS
+}
+
+model User {
+    id           String    @id @default(uuid()) @db.Uuid
+    email        String    @unique
+    passwordHash String
+    role         Role
+    isActive     Boolean   @default(true)
+    lastLogin    DateTime?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+
+    institutionId String?      @db.Uuid
+    institution   Institution? @relation("Members", fields: [institutionId], references: [id])
+
+    // Profiles (One-to-One)
+    adminProfile   AdminProfile?
+    teacherProfile TeacherProfile?
+
+    // Relations
+    resources          Resource[]    @relation("Uploader")
+    recordedMarks      ExamMark[]    @relation("MarkRecordedBy")
+    recordedAttendance Attendance[]  @relation("AttendanceRecordedBy")
+    createdInstitutions Institution[] @relation("Creator")
+
+    @@map("users")
+}
+
+model AdminProfile {
+    id        String   @id @default(uuid()) @db.Uuid
+    userId    String   @unique @db.Uuid
+    firstName String
+    lastName  String
+    phone     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("admin_profiles")
+}
+
+// Institution / Workspace settings stored from onboarding
+model Institution {
+    id          String   @id @default(uuid()) @db.Uuid
+    name        String
+    createdById String?  @db.Uuid
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    createdBy User?  @relation("Creator", fields: [createdById], references: [id])
+    members   User[] @relation("Members")
+
+    classes               Class[]
+    subjects              Subject[]
+    students              Student[]
+    teacherProfiles       TeacherProfile[]
+    attendances           Attendance[]
+    exams                 Exam[]
+    examClasses           ExamClass[]
+    examMarks             ExamMark[]
+    assessments           Assessment[]
+    resources             Resource[]
+    enrollments           Enrollment[]
+    teacherSubjectClasses TeacherSubjectClass[]
+
+    @@map("institutions")
+}
+
+model TeacherProfile {
+    id            String   @id @default(uuid()) @db.Uuid
+    userId        String   @unique @db.Uuid
+    employeeId    String   @unique
+    firstName     String
+    lastName      String
+    phone         String?
+    qualification String?
+    joiningDate   DateTime @db.Date
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    institutionId String       @db.Uuid
+    institution   Institution  @relation(fields: [institutionId], references: [id])
+
+    user                  User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+    teacherSubjectClasses TeacherSubjectClass[]
+
+    @@map("teacher_profiles")
+}
+
+model Class {
+    id             String   @id @default(uuid()) @db.Uuid
+    name           String
+    section        String
+    capacity       Int?
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    enrollments           Enrollment[]
+    teacherSubjectClasses TeacherSubjectClass[]
+    attendances           Attendance[]
+    resources             Resource[]
+    assessments           Assessment[]
+    examClasses           ExamClass[]
+
+    @@unique([name, section])
+    @@map("classes")
+}
+
+model Subject {
+    id          String   @id @default(uuid()) @db.Uuid
+    name        String
+    code        String   @unique
+    description String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    teacherSubjectClasses TeacherSubjectClass[]
+    examMarks             ExamMark[]
+    assessments           Assessment[]
+    attendances           Attendance[]
+    resources             Resource[]
+
+    @@map("subjects")
+}
+
+// Pivot Table mapping Teacher -> Subject -> Class
+// @@unique([classId, teacherId]) ensures a teacher can only teach one subject per class
+model TeacherSubjectClass {
+    id        String   @id @default(uuid()) @db.Uuid
+    teacherId String   @db.Uuid
+    classId   String   @db.Uuid
+    subjectId String   @db.Uuid
+    dayOfWeek Int?     // 0=Monday, 1=Tuesday, 2=Wednesday, 3=Thursday, 4=Friday
+    startTime String?  // "HH:mm" format
+    endTime   String?  // "HH:mm" format
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    teacher TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+    class   Class          @relation(fields: [classId], references: [id], onDelete: Cascade)
+    subject Subject        @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+    @@unique([classId, teacherId, dayOfWeek, startTime])
+    @@index([teacherId])
+    @@map("teacher_subject_classes")
+}
+
+model Student {
+    id              String   @id @default(uuid()) @db.Uuid
+    admissionNumber String   @unique
+    firstName       String
+    lastName        String
+    dob             DateTime @db.Date
+    gender          Gender
+    guardianName    String?
+    guardianPhone   String?
+    address         String?
+    isActive        Boolean  @default(true)
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    enrollments Enrollment[]
+    attendances      Attendance[]
+    examMarks        ExamMark[]
+    assessmentEntries AssessmentEntry[]
+
+    @@map("students")
+}
+
+// Student belongs to a class for a specific academic term
+model Enrollment {
+    id             String   @id @default(uuid()) @db.Uuid
+    studentId      String   @db.Uuid
+    classId        String   @db.Uuid
+    rollNumber     Int?
+    enrollmentDate DateTime @default(now())
+    status         String   @default("ACTIVE")
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+    class   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+    @@unique([studentId, classId])
+    @@index([classId])
+    @@map("enrollments")
+}
+
+model Attendance {
+    id           String           @id @default(uuid()) @db.Uuid
+    studentId    String           @db.Uuid
+    classId      String           @db.Uuid
+    subjectId    String           @db.Uuid
+    date         DateTime         @db.Date
+    status       AttendanceStatus
+    remarks      String?
+    recordedById String           @db.Uuid
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    student    Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+    class      Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+    subject    Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+    recordedBy User    @relation("AttendanceRecordedBy", fields: [recordedById], references: [id], onDelete: Restrict)
+
+    @@unique([studentId, classId, subjectId, date])
+    @@index([classId, subjectId, date])
+    @@map("attendances")
+}
+
+model Exam {
+    id        String   @id @default(uuid()) @db.Uuid
+    title     String
+    term      ExamTerm
+    startDate DateTime @db.Date
+    endDate   DateTime @db.Date
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    marks       ExamMark[]
+    examClasses ExamClass[]
+
+    @@map("exams")
+}
+
+model ExamClass {
+    id     String @id @default(uuid()) @db.Uuid
+    examId String @db.Uuid
+    classId String @db.Uuid
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    exam  Exam  @relation(fields: [examId], references: [id], onDelete: Cascade)
+    class Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+    @@unique([examId, classId])
+    @@map("exam_classes")
+}
+
+model Assessment {
+    id         String   @id @default(uuid()) @db.Uuid
+    classId    String   @db.Uuid
+    subjectId  String   @db.Uuid
+    type       AssessmentType
+    title      String
+    date       DateTime @db.Date
+    totalMarks Int      @default(100)
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    class   Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+    subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+    entries AssessmentEntry[]
+
+    @@index([classId, subjectId])
+    @@map("assessments")
+}
+
+model AssessmentEntry {
+    id           String @id @default(uuid()) @db.Uuid
+    assessmentId String @db.Uuid
+    studentId    String @db.Uuid
+    obtained     Int    @default(0)
+
+    assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+    student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+    @@unique([assessmentId, studentId])
+    @@map("assessment_entries")
+}
+
+model ExamMark {
+    id            String   @id @default(uuid()) @db.Uuid
+    examId        String   @db.Uuid
+    studentId     String   @db.Uuid
+    subjectId     String   @db.Uuid
+    marksObtained Decimal  @db.Decimal(5, 2)
+    maxMarks      Decimal  @db.Decimal(5, 2)
+    remarks       String?
+    recordedById  String   @db.Uuid
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    exam       Exam    @relation(fields: [examId], references: [id], onDelete: Cascade)
+    student    Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+    subject    Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+    recordedBy User    @relation("MarkRecordedBy", fields: [recordedById], references: [id], onDelete: Restrict)
+
+    @@unique([examId, studentId, subjectId])
+    @@index([studentId, examId])
+    @@map("exam_marks")
+}
+
+model Resource {
+    id          String       @id @default(uuid()) @db.Uuid
+    title       String
+    description String?
+    fileUrl     String
+    fileName    String?
+    dueDate     DateTime?
+    type        ResourceType
+    classId     String       @db.Uuid
+    subjectId   String       @db.Uuid
+    uploaderId  String       @db.Uuid
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+
+    institutionId String      @db.Uuid
+    institution   Institution @relation(fields: [institutionId], references: [id])
+
+    class    Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+    subject  Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+    uploader User    @relation("Uploader", fields: [uploaderId], references: [id], onDelete: Cascade)
+
+    @@index([classId, subjectId])
+    @@index([institutionId, createdAt])
+    @@map("resources")
+}
