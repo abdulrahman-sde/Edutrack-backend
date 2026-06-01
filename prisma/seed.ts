@@ -77,7 +77,11 @@ async function main() {
       institutionId: INSTITUTION_ID,
       createdInstitutions: { connect: { id: INSTITUTION_ID } },
       adminProfile: {
-        create: { firstName: "Super", lastName: "Admin", phone: "0300-1234567" },
+        create: {
+          firstName: "Super",
+          lastName: "Admin",
+          phone: "0300-1234567",
+        },
       },
     },
     include: { adminProfile: true },
@@ -101,7 +105,9 @@ async function main() {
 
   const subjects = await Promise.all(
     subjectData.map((s) =>
-      prisma.subject.create({ data: { name: s.name, code: s.code, institutionId: INSTITUTION_ID } }),
+      prisma.subject.create({
+        data: { name: s.name, code: s.code, institutionId: INSTITUTION_ID },
+      }),
     ),
   );
   const subjMap = Object.fromEntries(subjects.map((s) => [s.name, s]));
@@ -126,7 +132,12 @@ async function main() {
   const classes = await Promise.all(
     classData.map((c) =>
       prisma.class.create({
-        data: { name: c.name, section: c.section, capacity: c.capacity, institutionId: INSTITUTION_ID },
+        data: {
+          name: c.name,
+          section: c.section,
+          capacity: c.capacity,
+          institutionId: INSTITUTION_ID,
+        },
       }),
     ),
   );
@@ -136,15 +147,78 @@ async function main() {
   // 5. Teachers
   // ──────────────────────────────────────────────
   const teacherData = [
-    { email: "teacher1@edutrack.pk", empId: "T-001", firstName: "Ahmed", lastName: "Khan", qual: "M.Sc Mathematics", phone: "0301-1111111" },
-    { email: "teacher2@edutrack.pk", empId: "T-002", firstName: "Fatima", lastName: "Ali", qual: "M.Sc Physics", phone: "0301-2222222" },
-    { email: "teacher3@edutrack.pk", empId: "T-003", firstName: "Muhammad", lastName: "Usman", qual: "M.Sc Chemistry", phone: "0301-3333333" },
-    { email: "teacher4@edutrack.pk", empId: "T-004", firstName: "Ayesha", lastName: "Ahmed", qual: "M.Sc Biology", phone: "0301-4444444" },
-    { email: "teacher5@edutrack.pk", empId: "T-005", firstName: "Sana", lastName: "Malik", qual: "MA English", phone: "0301-5555555" },
-    { email: "teacher6@edutrack.pk", empId: "T-006", firstName: "Zaid", lastName: "Hassan", qual: "MA Urdu", phone: "0301-6666666" },
-    { email: "teacher7@edutrack.pk", empId: "T-007", firstName: "Hina", lastName: "Riaz", qual: "M.Sc Computer Science", phone: "0301-7777777" },
-    { email: "teacher8@edutrack.pk", empId: "T-008", firstName: "Kashif", lastName: "Malik", qual: "MA Islamiyat", phone: "0301-8888888" },
-    { email: "teacher9@edutrack.pk", empId: "T-009", firstName: "Nadia", lastName: "Jamil", qual: "MA Pakistan Studies", phone: "0301-9999999" },
+    {
+      email: "teacher1@edutrack.pk",
+      empId: "T-001",
+      firstName: "Ahmed",
+      lastName: "Khan",
+      qual: "M.Sc Mathematics",
+      phone: "0301-1111111",
+    },
+    {
+      email: "teacher2@edutrack.pk",
+      empId: "T-002",
+      firstName: "Fatima",
+      lastName: "Ali",
+      qual: "M.Sc Physics",
+      phone: "0301-2222222",
+    },
+    {
+      email: "teacher3@edutrack.pk",
+      empId: "T-003",
+      firstName: "Muhammad",
+      lastName: "Usman",
+      qual: "M.Sc Chemistry",
+      phone: "0301-3333333",
+    },
+    {
+      email: "teacher4@edutrack.pk",
+      empId: "T-004",
+      firstName: "Ayesha",
+      lastName: "Ahmed",
+      qual: "M.Sc Biology",
+      phone: "0301-4444444",
+    },
+    {
+      email: "teacher5@edutrack.pk",
+      empId: "T-005",
+      firstName: "Sana",
+      lastName: "Malik",
+      qual: "MA English",
+      phone: "0301-5555555",
+    },
+    {
+      email: "teacher6@edutrack.pk",
+      empId: "T-006",
+      firstName: "Zaid",
+      lastName: "Hassan",
+      qual: "MA Urdu",
+      phone: "0301-6666666",
+    },
+    {
+      email: "teacher7@edutrack.pk",
+      empId: "T-007",
+      firstName: "Hina",
+      lastName: "Riaz",
+      qual: "M.Sc Computer Science",
+      phone: "0301-7777777",
+    },
+    {
+      email: "teacher8@edutrack.pk",
+      empId: "T-008",
+      firstName: "Kashif",
+      lastName: "Malik",
+      qual: "MA Islamiyat",
+      phone: "0301-8888888",
+    },
+    {
+      email: "teacher9@edutrack.pk",
+      empId: "T-009",
+      firstName: "Nadia",
+      lastName: "Jamil",
+      qual: "MA Pakistan Studies",
+      phone: "0301-9999999",
+    },
   ];
 
   const teachers = await Promise.all(
@@ -269,7 +343,10 @@ async function main() {
 
     const perClass = tscAssignments.filter((x) => x.classIdx === a.classIdx);
     const subjIdx = perClass.indexOf(a);
-    const { dayOfWeek, startTime, endTime } = scheduleForSubjInClass(subjIdx, a.classIdx);
+    const { dayOfWeek, startTime, endTime } = scheduleForSubjInClass(
+      subjIdx,
+      a.classIdx,
+    );
 
     await prisma.teacherSubjectClass.create({
       data: {
@@ -290,10 +367,73 @@ async function main() {
   // 7. Students (8-10 per class)
   // ──────────────────────────────────────────────
   const firstNames = {
-    male: ["Abdullah", "Bilal", "Usman", "Hamza", "Hassan", "Ali", "Husnain", "Rayan", "Ahmad", "Saad", "Taha", "Shahzaib", "Farhan", "Danish", "Talha", "Abdul", "Rohaan", "Omar", "Zaid", "Ibrahim"],
-    female: ["Hafsa", "Ayesha", "Zainab", "Maryam", "Fatima", "Sara", "Noor", "Eman", "Komal", "Hira", "Laiba", "Manahil", "Sania", "Alina", "Mahnoor", "Iqra", "Areeba", "Sana", "Mariam", "Sabeen"],
+    male: [
+      "Abdullah",
+      "Bilal",
+      "Usman",
+      "Hamza",
+      "Hassan",
+      "Ali",
+      "Husnain",
+      "Rayan",
+      "Ahmad",
+      "Saad",
+      "Taha",
+      "Shahzaib",
+      "Farhan",
+      "Danish",
+      "Talha",
+      "Abdul",
+      "Rohaan",
+      "Omar",
+      "Zaid",
+      "Ibrahim",
+    ],
+    female: [
+      "Hafsa",
+      "Ayesha",
+      "Zainab",
+      "Maryam",
+      "Fatima",
+      "Sara",
+      "Noor",
+      "Eman",
+      "Komal",
+      "Hira",
+      "Laiba",
+      "Manahil",
+      "Sania",
+      "Alina",
+      "Mahnoor",
+      "Iqra",
+      "Areeba",
+      "Sana",
+      "Mariam",
+      "Sabeen",
+    ],
   };
-  const lastNames = ["Khan", "Ahmed", "Ali", "Hussain", "Iqbal", "Malik", "Shah", "Raza", "Rizvi", "Siddiqui", "Qureshi", "Hassan", "Farooq", "Akhtar", "Nawaz", "Yousaf", "Anjum", "Aziz", "Shaikh", "Hashmi"];
+  const lastNames = [
+    "Khan",
+    "Ahmed",
+    "Ali",
+    "Hussain",
+    "Iqbal",
+    "Malik",
+    "Shah",
+    "Raza",
+    "Rizvi",
+    "Siddiqui",
+    "Qureshi",
+    "Hassan",
+    "Farooq",
+    "Akhtar",
+    "Nawaz",
+    "Yousaf",
+    "Anjum",
+    "Aziz",
+    "Shaikh",
+    "Hashmi",
+  ];
 
   const studentData: {
     adm: string;
@@ -307,7 +447,8 @@ async function main() {
 
   let studentCounter = 0;
   for (let ci = 0; ci < classData.length; ci++) {
-    const classLabel = classData[ci]!.name.replace("Grade ", "GR") + classData[ci]!.section;
+    const classLabel =
+      classData[ci]!.name.replace("Grade ", "GR") + classData[ci]!.section;
     const count = ci === 0 || ci === 6 || ci === 8 ? 10 : 8;
 
     for (let si = 0; si < count; si++) {
@@ -316,7 +457,7 @@ async function main() {
       const namePool = isMale ? firstNames.male : firstNames.female;
       const first = namePool[studentCounter % namePool.length]!;
       const last = lastNames[studentCounter % lastNames.length]!;
-      const gender = isMale ? "MALE" as const : "FEMALE" as const;
+      const gender = isMale ? ("MALE" as const) : ("FEMALE" as const);
 
       studentData.push({
         adm: `${classLabel}-${String(si + 1).padStart(3, "0")}`,
@@ -337,7 +478,9 @@ async function main() {
           admissionNumber: s.adm,
           firstName: s.first,
           lastName: s.last,
-          dob: new Date(`2010-${String((studentData.indexOf(s) % 12) + 1).padStart(2, "0")}-15`),
+          dob: new Date(
+            `2010-${String((studentData.indexOf(s) % 12) + 1).padStart(2, "0")}-15`,
+          ),
           gender: s.gender,
           guardianName: s.guardian,
           guardianPhone: s.phone,
@@ -385,11 +528,23 @@ async function main() {
     }
   }
 
-  const attendanceSubjectNames = ["Mathematics", "Physics", "Chemistry", "Biology", "English", "Urdu", "Islamiyat", "Computer Science", "Pakistan Studies"];
+  const attendanceSubjectNames = [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Urdu",
+    "Islamiyat",
+    "Computer Science",
+    "Pakistan Studies",
+  ];
 
   let attendanceCount = 0;
   for (const cls of attendanceClasses) {
-    const clsStudents = students.filter((_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls));
+    const clsStudents = students.filter(
+      (_, idx) => studentData[idx]!.classIdx === classes.indexOf(cls),
+    );
     const clsSubjects = tscAssignments
       .filter((a) => classes.indexOf(cls) === a.classIdx)
       .map((a) => a.subjectName)
@@ -400,10 +555,13 @@ async function main() {
         for (const student of clsStudents) {
           const statusRoll = Math.random();
           const status =
-            statusRoll < 0.72 ? "PRESENT"
-            : statusRoll < 0.85 ? "ABSENT"
-            : statusRoll < 0.94 ? "LATE"
-            : "LEAVE";
+            statusRoll < 0.72
+              ? "PRESENT"
+              : statusRoll < 0.85
+                ? "ABSENT"
+                : statusRoll < 0.94
+                  ? "LATE"
+                  : "LEAVE";
 
           try {
             await prisma.attendance.create({
@@ -447,7 +605,8 @@ async function main() {
       end: new Date("2026-05-15"),
       classIdxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       markRange: [30, 95],
-      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+      maxMarksBySubj: (sn: string) =>
+        sn === "Mathematics" || sn === "English" ? 100 : 75,
     },
     {
       title: "Pre-Board Examinations 2026",
@@ -456,7 +615,8 @@ async function main() {
       end: new Date("2026-08-15"),
       classIdxs: [6, 7, 8, 9],
       markRange: [35, 98],
-      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+      maxMarksBySubj: (sn: string) =>
+        sn === "Mathematics" || sn === "English" ? 100 : 75,
     },
     {
       title: "Final Examinations 2026",
@@ -465,7 +625,8 @@ async function main() {
       end: new Date("2026-11-20"),
       classIdxs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       markRange: [25, 99],
-      maxMarksBySubj: (sn: string) => (sn === "Mathematics" || sn === "English" ? 100 : 75),
+      maxMarksBySubj: (sn: string) =>
+        sn === "Mathematics" || sn === "English" ? 100 : 75,
     },
   ];
 
@@ -490,7 +651,9 @@ async function main() {
 
     let examMarksCount = 0;
     for (const ci of cfg.classIdxs) {
-      const clsStudents = students.filter((_, idx) => studentData[idx]!.classIdx === ci);
+      const clsStudents = students.filter(
+        (_, idx) => studentData[idx]!.classIdx === ci,
+      );
       const clsSubjects = tscAssignments
         .filter((a) => a.classIdx === ci)
         .map((a) => a.subjectName)
@@ -502,7 +665,11 @@ async function main() {
         const maxMarks = cfg.maxMarksBySubj(subjectName);
 
         for (const student of clsStudents) {
-          const obtained = Math.floor(Math.random() * (cfg.markRange[1] - cfg.markRange[0]) + cfg.markRange[0]);
+          const obtained = Math.floor(
+            Math.random() *
+              (((cfg.markRange[1] as any) - cfg.markRange[0]!) as any) +
+              cfg.markRange[0]!,
+          );
           try {
             await prisma.examMark.create({
               data: {
@@ -533,16 +700,76 @@ async function main() {
   // 11. Resources
   // ──────────────────────────────────────────────
   const resourceData = [
-    { title: "Chapter 1 - Algebra Basics", type: "STUDY_MATERIAL" as const, classIdx: 6, subjectName: "Mathematics", url: "https://res.cloudinary.com/demo/materials/algebra-basics.pdf" },
-    { title: "Assignment 1 - Linear Equations", type: "ASSIGNMENT" as const, classIdx: 6, subjectName: "Mathematics", url: "https://res.cloudinary.com/demo/assignments/linear-equations.pdf" },
-    { title: "Newton's Laws of Motion Notes", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Physics", url: "https://res.cloudinary.com/demo/materials/newton-laws.pdf" },
-    { title: "Periodic Table Reference", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Chemistry", url: "https://res.cloudinary.com/demo/materials/periodic-table.pdf" },
-    { title: "Essay Writing - My Hero", type: "ASSIGNMENT" as const, classIdx: 6, subjectName: "English", url: "https://res.cloudinary.com/demo/assignments/essay-hero.pdf" },
-    { title: "Urdu Grammar Exercises", type: "ASSIGNMENT" as const, classIdx: 6, subjectName: "Urdu", url: "https://res.cloudinary.com/demo/assignments/urdu-grammar.pdf" },
-    { title: "Syllabus Breakdown 2026", type: "SYLLABUS" as const, classIdx: 6, subjectName: "Mathematics", url: "https://res.cloudinary.com/demo/syllabus/math-2026.pdf" },
-    { title: "Biology - Cell Structure", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Biology", url: "https://res.cloudinary.com/demo/materials/cell-structure.pdf" },
-    { title: "Computer - Programming Basics", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Computer Science", url: "https://res.cloudinary.com/demo/materials/programming.pdf" },
-    { title: "Pakistan Studies - Chapter 1", type: "STUDY_MATERIAL" as const, classIdx: 8, subjectName: "Pakistan Studies", url: "https://res.cloudinary.com/demo/materials/pak-studies-ch1.pdf" },
+    {
+      title: "Chapter 1 - Algebra Basics",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 6,
+      subjectName: "Mathematics",
+      url: "https://res.cloudinary.com/demo/materials/algebra-basics.pdf",
+    },
+    {
+      title: "Assignment 1 - Linear Equations",
+      type: "ASSIGNMENT" as const,
+      classIdx: 6,
+      subjectName: "Mathematics",
+      url: "https://res.cloudinary.com/demo/assignments/linear-equations.pdf",
+    },
+    {
+      title: "Newton's Laws of Motion Notes",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 8,
+      subjectName: "Physics",
+      url: "https://res.cloudinary.com/demo/materials/newton-laws.pdf",
+    },
+    {
+      title: "Periodic Table Reference",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 8,
+      subjectName: "Chemistry",
+      url: "https://res.cloudinary.com/demo/materials/periodic-table.pdf",
+    },
+    {
+      title: "Essay Writing - My Hero",
+      type: "ASSIGNMENT" as const,
+      classIdx: 6,
+      subjectName: "English",
+      url: "https://res.cloudinary.com/demo/assignments/essay-hero.pdf",
+    },
+    {
+      title: "Urdu Grammar Exercises",
+      type: "ASSIGNMENT" as const,
+      classIdx: 6,
+      subjectName: "Urdu",
+      url: "https://res.cloudinary.com/demo/assignments/urdu-grammar.pdf",
+    },
+    {
+      title: "Syllabus Breakdown 2026",
+      type: "SYLLABUS" as const,
+      classIdx: 6,
+      subjectName: "Mathematics",
+      url: "https://res.cloudinary.com/demo/syllabus/math-2026.pdf",
+    },
+    {
+      title: "Biology - Cell Structure",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 8,
+      subjectName: "Biology",
+      url: "https://res.cloudinary.com/demo/materials/cell-structure.pdf",
+    },
+    {
+      title: "Computer - Programming Basics",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 8,
+      subjectName: "Computer Science",
+      url: "https://res.cloudinary.com/demo/materials/programming.pdf",
+    },
+    {
+      title: "Pakistan Studies - Chapter 1",
+      type: "STUDY_MATERIAL" as const,
+      classIdx: 8,
+      subjectName: "Pakistan Studies",
+      url: "https://res.cloudinary.com/demo/materials/pak-studies-ch1.pdf",
+    },
   ];
 
   for (const r of resourceData) {
